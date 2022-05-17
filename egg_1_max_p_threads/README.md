@@ -3,6 +3,7 @@ Summary:
 ---------
 
 * this egg illustrates maxing out # of platform threads
+    - max on my Mac, default JVM is between 4k and 4.5k
 * this egg uses:
     - Java 19 (preview) virtual threads
 
