@@ -25,7 +25,7 @@ class MyTask implements Runnable {
 }
 
 public class Runner {
-    void run() throws Exception {
+    static void run() {
         int numThreads = 8;
         try (var executor = Executors.newFixedThreadPool(numThreads)) {
             int numTasks = 10; 
@@ -33,23 +33,11 @@ public class Runner {
                 executor.submit(new MyTask(i)); 
             }
         }
-        // executor is closed/shutdown here
-        /*
-        var executorService = Executors.newVirtualThreadPerTaskExecutor();
-        var task1 = new MyTask(1);
-        var task2 = new MyTask(2);
-        var task3 = new MyTask(3);
-        executorService.submit(task1);
-        executorService.submit(task2);
-        executorService.submit(task3);
-        executorService.shutdown(); // Disable new tasks from being submitted
-        System.out.println("TRACER shutting down ...");
-        executorService.awaitTermination(5, TimeUnit.SECONDS);
-        */
+        // executor is auto-closed/shutdown here
     }
 
     static public void main(String... args) throws Exception {
-        new Runner().run();
+        run();
         System.out.println("Ready.");
     }
 }
