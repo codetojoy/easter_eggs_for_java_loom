@@ -16,7 +16,7 @@ To Build:
 
 useful commands:
 
-* `./set_jdk.sh`
+* `. ./set_jdk.sh`
     - SDKMan! will set JDK to value in `.sdkmanrc`
 * `./clean.sh`
 * `./compile.sh`

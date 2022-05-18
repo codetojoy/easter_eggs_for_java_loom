@@ -5,16 +5,34 @@ import java.util.*;
 import java.util.concurrent.*;
 import jdk.incubator.concurrent.*;
 
+// javadoc here: https://download.java.net/java/early_access/loom/docs/api/
+
 class Worker { 
     static final int THROW_EXCEPTION = -1;
 
-    String doWork(int delayInMillis, String result) throws Exception {
-        System.out.println("TRACER worker thread: " + Thread.currentThread());
+    void doSleep(int delayInMillis) {
+        try { Thread.sleep(delayInMillis); } catch (Exception ex) {} 
+    }
+    
+    void log(int index, String name) {
+        System.out.println("TRACER worker name: " + name + 
+                            " thread: " + Thread.currentThread() +
+                            " index:" + index);
+    }
+
+    String doWork(int delayInMillis, String name, String result) throws Exception {
         if (delayInMillis == THROW_EXCEPTION) {
             throw new Exception("operation failed");
-        } else {
-            try { Thread.sleep(delayInMillis); } catch (Exception ex) {} 
+        } 
+
+        // sleep in increments so that we can see if thread is interrupted
+        int chunkDelayInMillis = 100;
+        int numChunks = delayInMillis / chunkDelayInMillis;
+        for (int i = 0; i < numChunks; i += 1) {
+            log(i, name);
+            doSleep(chunkDelayInMillis);
         }
+
         return result;
     }
 }
@@ -24,11 +42,11 @@ public class Runner {
     int fetchOrderDelayInMillis = 5000;
 
     String findUser() throws Exception { 
-        return new Worker().doWork(findUserDelayInMillis, "user-5150");
+        return new Worker().doWork(findUserDelayInMillis, "findUser", "user-5150");
     }
 
     String fetchOrder() throws Exception { 
-        return new Worker().doWork(fetchOrderDelayInMillis, "order-6160");
+        return new Worker().doWork(fetchOrderDelayInMillis, "fetchOrder", "order-6160");
     }
 
     String run() throws Exception {
@@ -63,7 +81,7 @@ public class Runner {
     }
 
     public static void main(String... args) {
-        int which = CASE_2_FIND_USER_FAILS;
+        int which = CASE_1_HAPPY_PATH;
         var runner = buildRunner(which);
 
         try {
