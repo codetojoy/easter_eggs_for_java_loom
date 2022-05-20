@@ -4,7 +4,6 @@ Summary:
 
 * this egg illustrates structured concurrency
 * task "foo" and task "bar" are in a race: first one to complete is used
-* NOTE: it doesn't seem like the slower thread is interrupted???
 
 To Build:
 ---------
