@@ -1,7 +1,8 @@
 
+// TBH, I no longer own this domain
 package net.codetojoy;
 
-import java.util.*;
+import java.time.Duration;
 import java.util.concurrent.*;
 import jdk.incubator.concurrent.*;
 
@@ -10,8 +11,8 @@ import jdk.incubator.concurrent.*;
 class Worker { 
     static final int THROW_EXCEPTION = -1;
 
-    void doSleep(int delayInMillis) {
-        try { Thread.sleep(delayInMillis); } catch (Exception ex) {} 
+    void doSleep(long delayInMillis) throws InterruptedException {
+        Thread.sleep(Duration.ofMillis(delayInMillis)); 
     }
     
     void log(int index, String name) {
@@ -26,7 +27,7 @@ class Worker {
         } 
 
         // sleep in increments so that we can see if thread is interrupted
-        int chunkDelayInMillis = 100;
+        int chunkDelayInMillis = 250;
         int numChunks = delayInMillis / chunkDelayInMillis;
         for (int i = 0; i < numChunks; i += 1) {
             log(i, name);
@@ -41,12 +42,24 @@ public class Runner {
     int findUserDelayInMillis = 1000;
     int fetchOrderDelayInMillis = 5000;
 
-    String findUser() throws Exception { 
-        return new Worker().doWork(findUserDelayInMillis, "findUser", "user-5150");
+    String findUser() { 
+        String result = "";
+        try {
+            result = new Worker().doWork(findUserDelayInMillis, "findUser", "user-5150");
+        } catch (Exception ex) {
+            System.err.println("TRACER ex: " + ex);
+        }
+        return result;
     }
 
-    String fetchOrder() throws Exception { 
-        return new Worker().doWork(fetchOrderDelayInMillis, "fetchOrder", "order-6160");
+    String fetchOrder() { 
+        String result = "";
+        try {
+            result = new Worker().doWork(fetchOrderDelayInMillis, "fetchOrder", "order-6160");
+        } catch (Exception ex) {
+            System.err.println("TRACER caught ex: " + ex);
+        }
+        return result;
     }
 
     String run() throws Exception {
@@ -55,7 +68,7 @@ public class Runner {
             Future<String> order = scope.fork(() -> fetchOrder());
 
             scope.join();          // Join both forks
-            scope.throwIfFailed(); // ... and propagate errors
+            scope.throwIfFailed(); // and propagate errors
 
             // Here, both forks have succeeded, so compose their results
             return user.resultNow() + " " + order.resultNow();
@@ -81,7 +94,7 @@ public class Runner {
     }
 
     public static void main(String... args) {
-        int which = CASE_1_HAPPY_PATH;
+        int which = CASE_2_FIND_USER_FAILS;
         var runner = buildRunner(which);
 
         try {
@@ -89,6 +102,7 @@ public class Runner {
             System.out.println("TRACER result: " + result);
         } catch (Exception ex) {
             System.err.println("TRACER caught exception: " + ex.getMessage());
+            ex.printStackTrace();
         }
     }
 }

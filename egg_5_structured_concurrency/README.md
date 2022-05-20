@@ -3,6 +3,10 @@ Summary:
 ---------
 
 * this egg illustrates structured concurrency
+* two tasks: `findUser` and `fetchOrder`
+    - can be configured to succeed or fail
+* NOTE
+    - when one task is configured to fail, the other doesn't seem to stop... not sure why
 
 To Build:
 ---------

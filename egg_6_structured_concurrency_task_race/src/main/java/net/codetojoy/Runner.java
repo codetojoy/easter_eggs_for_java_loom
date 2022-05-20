@@ -1,7 +1,8 @@
 
+// TBH, I no longer own this domain
 package net.codetojoy;
 
-import java.util.*;
+import java.time.Duration;
 import java.util.concurrent.*;
 import jdk.incubator.concurrent.*;
 
@@ -10,12 +11,18 @@ import jdk.incubator.concurrent.*;
 class Worker { 
     static final int THROW_EXCEPTION = -1;
 
-    void doSleep(int delayInMillis) {
-        try { Thread.sleep(delayInMillis); } catch (Exception ex) {} 
+    void doSleep(long delayInMillis) throws InterruptedException {
+        Thread.sleep(Duration.ofMillis(delayInMillis));
     }
-    
-    void log(int index, String name) {
+
+    void logInfo(int index, String name) {
         System.out.println("TRACER worker name: " + name + 
+                            " thread: " + Thread.currentThread() +
+                            " index:" + index);
+    }
+
+    void logInterrupt(int index, String name) {
+        System.err.println("TRACER worker INTERRUPTED name: " + name + 
                             " thread: " + Thread.currentThread() +
                             " index:" + index);
     }
@@ -29,7 +36,11 @@ class Worker {
         int chunkDelayInMillis = 100;
         int numChunks = delayInMillis / chunkDelayInMillis;
         for (int i = 0; i < numChunks; i += 1) {
-            log(i, name);
+            if (Thread.currentThread().isInterrupted()) {
+                logInterrupt(i, name);
+                return "INTERRUPTED";
+            }
+            logInfo(i, name);
             doSleep(chunkDelayInMillis);
         }
 
@@ -41,25 +52,38 @@ public class Runner {
     int taskFooDelayInMillis = 1000;
     int taskBarDelayInMillis = 5000;
 
-    String taskFoo() throws Exception { 
-        return new Worker().doWork(taskFooDelayInMillis, "taskFoo", "FOO-5150");
+    String taskFoo() {
+        String result = "";
+        try {
+            result = new Worker().doWork(taskFooDelayInMillis, "taskFoo", "foo-5150");
+        } catch (Exception ex) {
+            System.err.println("TRACER ex: " + ex);
+        }
+        return result;
     }
 
-    String taskBar() throws Exception { 
-        return new Worker().doWork(taskBarDelayInMillis, "taskBar", "BAR-6160");
+    String taskBar() {
+        String result = "";
+        try {
+            result = new Worker().doWork(taskBarDelayInMillis, "taskBar", "bar-6160");
+        } catch (Exception ex) {
+            System.err.println("TRACER caught ex: " + ex);
+        }
+        return result;
     }
 
     String run() throws Exception {
-        try (var scope = new StructuredTaskScope.ShutdownOnSuccess()) {
+        try (var scope = new StructuredTaskScope.ShutdownOnSuccess<String>()) {
             Future<String>  user  = scope.fork(() -> taskFoo()); 
             Future<String> order = scope.fork(() -> taskBar());
 
             scope.join(); 
 
-            return (String) scope.result();
+            return scope.result();
         }
     }
 
+/*
     static final int CASE_1_HAPPY_PATH = 1;
 
     static Runner buildRunner(int which) {
@@ -69,10 +93,10 @@ public class Runner {
         } 
         return runner;
     }
+*/
 
     public static void main(String... args) {
-        int which = CASE_1_HAPPY_PATH;
-        var runner = buildRunner(which);
+        var runner = new Runner(); // buildRunner(which);
 
         try {
             String result = runner.run();
