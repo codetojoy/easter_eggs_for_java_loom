@@ -1,5 +1,5 @@
 
-// TBH, I no longer own this domain
+// note: I no longer own this domain
 package net.codetojoy;
 
 import java.time.Duration;
