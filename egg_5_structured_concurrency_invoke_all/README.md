@@ -3,10 +3,10 @@ Summary:
 ---------
 
 * this egg illustrates structured concurrency
-* two tasks: `findUser` and `fetchOrder`
+* two tasks: `foo` and `bar`
     - can be configured to succeed or fail
 * NOTE
-    - happy path: one task takes 1 seconds; the other takes 5 seconds
+    - happy path: one task takes X seconds; the other takes Y seconds
     - when one task is configured to fail, the other is interrupted
 
 To Build:

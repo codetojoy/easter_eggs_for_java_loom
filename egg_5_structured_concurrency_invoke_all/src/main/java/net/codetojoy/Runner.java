@@ -8,93 +8,63 @@ import jdk.incubator.concurrent.*;
 
 // javadoc here: https://download.java.net/java/early_access/loom/docs/api/
 
-class Worker { 
-    static final int THROW_EXCEPTION = -1;
-
-    void doSleep(long delayInMillis) throws InterruptedException {
-        Thread.sleep(Duration.ofMillis(delayInMillis)); 
-    }
-    
-    void log(int index, String name) {
-        System.out.println("TRACER worker name: " + name + 
-                            " thread: " + Thread.currentThread() +
-                            " index:" + index);
-    }
-
-    String doWork(int delayInMillis, String name, String result) throws Exception {
-        if (delayInMillis == THROW_EXCEPTION) {
-            throw new Exception("operation failed");
-        } 
-
-        // sleep in increments so that we can see if thread is interrupted
-        int chunkDelayInMillis = 250;
-        int numChunks = delayInMillis / chunkDelayInMillis;
-        for (int i = 0; i < numChunks; i += 1) {
-            log(i, name);
-            doSleep(chunkDelayInMillis);
-        }
-
-        return result;
-    }
-}
-
 public class Runner {
-    int findUserDelayInMillis = 1000;
-    int fetchOrderDelayInMillis = 5000;
+    long taskFooDelayInMillis = 1000L;
+    long taskBarDelayInMillis = 5000L;
 
-    String findUser() { 
+    String taskFoo() { 
         String result = "";
         try {
-            result = new Worker().doWork(findUserDelayInMillis, "findUser", "user-5150");
+            result = new Worker().doWork(taskFooDelayInMillis, "taskFoo", "foo-5150");
         } catch (Exception ex) {
-            System.err.println("TRACER ex: " + ex);
+            System.err.println("TRACER foo caught ex: " + ex);
         }
         return result;
     }
 
-    String fetchOrder() { 
+    String taskBar() { 
         String result = "";
         try {
-            result = new Worker().doWork(fetchOrderDelayInMillis, "fetchOrder", "order-6160");
+            result = new Worker().doWork(taskBarDelayInMillis, "taskBar", "bar-6160");
         } catch (Exception ex) {
-            System.err.println("TRACER caught ex: " + ex);
+            System.err.println("TRACER bar caught ex: " + ex);
         }
         return result;
     }
 
     String run() throws Exception {
         try (var scope = new StructuredTaskScope.ShutdownOnFailure()) {
-            Future<String>  user  = scope.fork(() -> findUser()); 
-            Future<String> order = scope.fork(() -> fetchOrder());
+            Future<String> foo = scope.fork(() -> taskFoo()); 
+            Future<String> bar = scope.fork(() -> taskBar());
 
             scope.join();          // Join both forks
             scope.throwIfFailed(); // and propagate errors
 
             // Here, both forks have succeeded, so compose their results
-            return user.resultNow() + " " + order.resultNow();
+            return foo.resultNow() + " " + bar.resultNow();
         }
     }
 
     static final int CASE_1_HAPPY_PATH = 1;
-    static final int CASE_2_FIND_USER_FAILS = 2;
-    static final int CASE_3_FETCH_ORDER_FAILS = 3;
+    static final int CASE_2_TASK_FOO_FAILS = 2;
+    static final int CASE_3_TASK_BAR_FAILS = 3;
 
     static Runner buildRunner(int which) {
         Runner runner = new Runner();
         if (which == CASE_1_HAPPY_PATH) {
             // no-op
-        } else if (which == CASE_2_FIND_USER_FAILS) {
+        } else if (which == CASE_2_TASK_FOO_FAILS) {
             // find user will fail
-            runner.findUserDelayInMillis = Worker.THROW_EXCEPTION;
-        } else if (which == CASE_3_FETCH_ORDER_FAILS) {
+            runner.taskFooDelayInMillis = Worker.THROW_EXCEPTION;
+        } else if (which == CASE_3_TASK_BAR_FAILS) {
             // fetch order will fail
-            runner.fetchOrderDelayInMillis = Worker.THROW_EXCEPTION;
+            runner.taskBarDelayInMillis = Worker.THROW_EXCEPTION;
         }
         return runner;
     }
 
     public static void main(String... args) {
-        int which = CASE_2_FIND_USER_FAILS;
+        int which = CASE_1_HAPPY_PATH;
         var runner = buildRunner(which);
 
         try {
