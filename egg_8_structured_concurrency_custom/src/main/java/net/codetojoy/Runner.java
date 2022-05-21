@@ -2,17 +2,22 @@
 // note: I no longer own this domain
 package net.codetojoy;
 
+import java.util.Random;
 import java.util.stream.IntStream;
 
 // javadoc here: https://download.java.net/java/early_access/loom/docs/api/
 
 public class Runner {
-    long taskFooDelayInMillis = 5000L;
+    private Random rn = new Random();
+    private static final int MAX_DELAY_IN_SECONDS = 10;
 
-    String taskFoo() {
+    String taskFoo(int i) {
         String result = "";
         try {
-            result = new Worker().doWork(taskFooDelayInMillis, "taskFoo", "foo-5150");
+            var value = "foo-";
+            int x = rn.nextInt(MAX_DELAY_IN_SECONDS) + 1;
+            long delayInMillis = x * 1000L;
+            result = new Worker().doWork(delayInMillis, "taskFoo", value);
         } catch (Exception ex) {
             System.err.println("TRACER foo caught ex: " + ex);
         }
@@ -22,7 +27,7 @@ public class Runner {
     String run() throws Exception {
         try (var scope = new CustomStructuredTaskScope<String>()) {
             int numTasks = 20;
-            IntStream.range(0, numTasks).forEach( i -> scope.fork(() -> taskFoo())); 
+            IntStream.range(0, numTasks).forEach( i -> scope.fork(() -> taskFoo(i))); 
 
             scope.join();
 

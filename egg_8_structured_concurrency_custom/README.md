@@ -7,8 +7,7 @@ Summary:
     - use a custom StructuredTaskScope to define success when X tasks complete 
     - this is highly contrived and ridiculous
 * TODO
-    - give each task an index or timestamp
-    - randomize the delay for each task
+    - add behaviour to stop when X tasks complete?
 
 To Build:
 ---------
