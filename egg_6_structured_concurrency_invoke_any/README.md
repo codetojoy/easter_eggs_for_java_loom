@@ -3,7 +3,7 @@ Summary:
 ---------
 
 * this egg illustrates structured concurrency
-* task "foo" and task "bar" are in a race: first one to complete is used
+* task "foo" and task "bar" are in a race: first one to complete is used; the other is interrupted
 
 To Build:
 ---------
