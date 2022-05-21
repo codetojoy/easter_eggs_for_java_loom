@@ -1,32 +1,10 @@
 
-Summary:
----------
+### easter_eggs_for_java_loom
 
-* this egg illustrates maxing out # of platform threads
-    - max on my Mac, default JVM is between 4k and 4.5k
-* this egg uses:
-    - Java 19 (preview) virtual threads
+- some basic examples for Project Loom, which is preview in JDK 19 (as of 17-MAY-2022) 
+- usage of *egg* here is intended as an [SSCCE](http://sscce.org/); **not** a [hidden feature](https://en.wikipedia.org/wiki/Easter_egg_(media))
 
-To Build:
----------
+### Notes
 
-* requires JDK 19.ea.22-open via [SDKMan!](https://sdkman.io/)
-* Gradle does not yet support JDK 19 preview (as of MAY 2022). Check [here](https://docs.gradle.org/current/userguide/compatibility.html)
-* unknown if Maven can be used ¯\_(ツ)_/¯
-
-useful commands:
-
-* `. ./set_jdk.sh`
-    - SDKMan! will set JDK to value in `.sdkmanrc`
-* `./clean.sh`
-* `./compile.sh`
-* `./run.sh`
-* note `./go.sh` does all of the above (minus set_jdk)
-
-Flight Recorder:
-----------------
-
-* use `./run_with_flight_recorder.sh` to generate `flight.jfr`
-* install Java Mission Control 8.1.0 from [here](https://adoptopenjdk.net/jmc.html)
-* in terminal, run: `open JDK\ Mission\ Control.app/`
-* in app, open `flight.jfr`
+* examples for [structured concurrency](https://openjdk.java.net/jeps/428) do not use JDK 19 (preview) but a Loom-specific build
+    - see README for each example
