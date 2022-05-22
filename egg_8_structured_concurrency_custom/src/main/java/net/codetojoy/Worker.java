@@ -7,10 +7,14 @@ import java.util.Random;
 
 class Worker { 
     public static final long THROW_EXCEPTION = -1L;
-    private Random random = new Random();
+    // private final Random random = new Random(System.currentTimeMillis());
 
-    void doSleep(long delayInMillis) throws InterruptedException {
-        Thread.sleep(Duration.ofMillis(delayInMillis));
+    void doSleep(long delayInMillis) {
+        try {
+            Thread.sleep(Duration.ofMillis(delayInMillis));
+        } catch (InterruptedException ex) {
+            throw new RuntimeException("worker interrupted", ex);
+        }
     }
 
     void logInfo(int index, String name) {
@@ -20,19 +24,22 @@ class Worker {
     }
 
     boolean isPathogenic() {
-        // approximately 1 in N chance of failing
-        int n = 10;
-        return false; // random.nextInt(n) == 0;
+        long now = System.currentTimeMillis();
+        long remainder = now % 10;
+        return remainder == 0 || remainder == 5;
     }
 
-    String doWork(long delayInMillis, String name, String result) throws Exception {
+    String doWork(long delayInMillis, String name, String result) {
         if (delayInMillis == THROW_EXCEPTION) {
-            throw new Exception("operation failed: client request");
+            throw new RuntimeException("operation failed: client request");
         } 
 
+        var isPathogenic = isPathogenic();
+        System.err.println("TRACER worker trace isP: " + isPathogenic);
+        
         if (isPathogenic()) {
             System.err.println("TRACER worker: failed [coin flip]. name: " + name);
-            throw new Exception("operation failed: coin flip");
+            throw new RuntimeException("operation failed: coin flip");
         }
 
         System.out.println("TRACER worker: operation ok. name: " + name);

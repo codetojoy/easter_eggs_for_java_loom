@@ -8,20 +8,16 @@ import java.util.stream.IntStream;
 // javadoc here: https://download.java.net/java/early_access/loom/docs/api/
 
 public class Runner {
-    private Random random = new Random();
+    private final Random random = new Random(System.currentTimeMillis());
     private static final int MAX_DELAY_IN_SECONDS = 6;
 
     String taskFoo(int i) {
-        String result = "";
-        try {
-            long delayInMillis = (random.nextInt(MAX_DELAY_IN_SECONDS) + 1) * 1000L;
-            var name = "TaskFoo-" + i;
-            var value = "foo-" + i;
+        long delayInMillis = (random.nextInt(MAX_DELAY_IN_SECONDS) + 1) * 1000L;
+        var name = "TaskFoo-" + i;
+        var value = "foo-" + i;
 
-            result = new Worker().doWork(delayInMillis, name, value);
-        } catch (Exception ex) {
-            System.err.println("TRACER foo caught ex: " + ex);
-        }
+        var result = new Worker().doWork(delayInMillis, name, value);
+
         return result;
     }
 
