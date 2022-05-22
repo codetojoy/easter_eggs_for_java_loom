@@ -24,7 +24,7 @@ public class Runner {
     List<String> run() throws Exception {
         int numTasksForSuccess = 5;
         try (var scope = new CustomStructuredTaskScope<String>(numTasksForSuccess)) {
-            int numTasks = 20;
+            int numTasks = 50;
             IntStream.range(0, numTasks).forEach(i -> scope.fork(() -> taskFoo(i))); 
 
             scope.join();

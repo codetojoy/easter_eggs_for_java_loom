@@ -14,56 +14,32 @@ import jdk.incubator.concurrent.*;
 // ref: https://github.com/openjdk/loom/blob/fibers/src/jdk.incubator.concurrent/share/classes/jdk/incubator/concurrent/StructuredTaskScope.java
 // 
 // this is similar in spirit to StructuredTaskScope.ShutdownOnSuccess<T>, but for N tasks
+// i.e. given M tasks, success is defined when N of them complete successfully
+// to wit: `invokeSome(n)`
  
 public class CustomStructuredTaskScope<T> extends StructuredTaskScope<T> {
+    private static final String LOG_PREFIX = "TRACER CustomStructuredTaskScope ";
+
     private AtomicInteger successCounter = new AtomicInteger(0);
     private AtomicBoolean hasReachedThreshold = new AtomicBoolean(false);
     private int numTasksForSuccess = 0;
     private List<T> results = new CopyOnWriteArrayList<>();
-    private static final String LOG_PREFIX = "TRACER CustomStructuredTaskScope ";
+
+    // sanity check:
+    private AtomicInteger failCounter = new AtomicInteger(0);
 
     public CustomStructuredTaskScope(int numTasksForSuccess) {
         this.numTasksForSuccess = numTasksForSuccess;
     } 
 
-/*
-    private boolean isFutureSuccessful(Future<T> future) {
-        Objects.requireNonNull(future);
-        Future.State state = future.state();
-        if (state == Future.State.RUNNING) {
-            System.err.println("TRACER CustomStructuredScope: ERROR task is not completed");
-            throw new IllegalArgumentException("Task is not completed");
-        }
-        return state == Future.State.SUCCESS;
-    }
-*/
-
-    private Optional<T> getSuccessfulResult(Future<T> future) {
-        Optional<T> result = Optional.empty();
-        try {
-            if (future.state() == Future.State.SUCCESS) {
-                result = Optional.of(future.resultNow());
-            }
-        } catch (Exception ex) {
-            System.err.println(LOG_PREFIX + " getResult caught ex: " + ex.getMessage());
-        }
-        return result;
-    }
-
     @Override
     protected void handleComplete(Future<T> future) {
         try { 
-            var resultOption = getSuccessfulResult(future);
-            if (resultOption.isPresent()) {
-                var result = resultOption.get();
+            var state = future.state();
+            if (state == Future.State.SUCCESS) {
                 int numSuccess = successCounter.incrementAndGet();
                 if (numSuccess <= numTasksForSuccess) {
-                    String tmp = result.toString();
-                    if (tmp.isEmpty()) {
-                       System.err.println(LOG_PREFIX + " BINGO WTF...");
-                    } else {
-                        results.add(result);
-                    }
+                    results.add(future.resultNow());
                 } 
 
                 if (numSuccess == numTasksForSuccess) {
@@ -71,6 +47,8 @@ public class CustomStructuredTaskScope<T> extends StructuredTaskScope<T> {
                     System.out.println(LOG_PREFIX + " success threshold reached...");
                     shutdown();
                 }
+            } else if (state == Future.State.FAILED) {
+                failCounter.incrementAndGet();
             }
         } catch (Exception ex) {
             System.err.println(LOG_PREFIX + " ERROR caught ex: " + ex.getMessage());
@@ -78,16 +56,13 @@ public class CustomStructuredTaskScope<T> extends StructuredTaskScope<T> {
     }    
 
     // TODO: deep copy?
-    public List<T> results() throws ExecutionException {
-        List<T> values = null;
-
-        if (hasReachedThreshold.get()) {
-            values = new ArrayList<T>(results);
-        } else {
-            var cause = new IllegalStateException("");
-            throw new ExecutionException("success threshold not met", cause);
+    public List<T> results() {
+        if (! hasReachedThreshold.get()) {
+            throw new IllegalStateException("success threshold not met");
         } 
+        System.out.println(LOG_PREFIX + " success! num ok: " + numTasksForSuccess +
+                            " num failed: " + failCounter.get());
 
-        return values;
+        return new ArrayList<T>(results);
     }
 }

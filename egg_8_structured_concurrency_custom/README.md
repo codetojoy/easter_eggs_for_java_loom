@@ -6,9 +6,6 @@ Summary:
 * create N tasks
     - use a custom StructuredTaskScope to define success when X tasks complete 
     - this is highly contrived and NOT production-ready
-* TODO
-    - add behaviour to stop when X tasks complete?
-    - what does it mean when a thread throws an exception ?? 
 
 To Build:
 ---------
