@@ -5,7 +5,8 @@ Summary:
 * this egg illustrates structured concurrency
 * create N tasks
     - use a custom StructuredTaskScope to define success when X tasks complete 
-    - this is highly contrived and NOT production-ready
+    - if familiar with `invokeAny()` and `invokeAll()`, this could be considered `invokeSome(n)`
+* NOTE: this is highly contrived and NOT production-ready
 
 To Build:
 ---------
