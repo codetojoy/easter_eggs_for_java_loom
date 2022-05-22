@@ -4,7 +4,7 @@ Summary:
 
 * this egg illustrates structured concurrency
 * create N tasks
-    - use a custom StructuredTaskScope to define success when X tasks complete 
+    - use a custom [StructuredTaskScope](https://download.java.net/java/early_access/loom/docs/api/jdk.incubator.concurrent/jdk/incubator/concurrent/StructuredTaskScope.html) to define success when X tasks complete 
     - if familiar with `invokeAny()` and `invokeAll()`, this could be considered `invokeSome(n)`
 * NOTE: this is highly contrived and NOT production-ready
 
