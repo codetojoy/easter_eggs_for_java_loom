@@ -8,8 +8,14 @@ import java.util.stream.IntStream;
 
 class Actor {
     private static final String LOG_PREFIX = "TRACER Actor";
-    private static final String OUTPUT_FORMAT = "%s [%s] received: %s";
+    private static final String OUTPUT_FORMAT = "%s id: %d client-t: %s received: %s";
     private static final String REGEX_STR = "\\/runnable.*?worker-\\d+";
+
+    private final int id;
+
+    Actor(int id) {
+        this.id = id;
+    }
 
     // e.g. s: VirtualThread[#35]/runnable@ForkJoinPool-1-worker-1
     //      return: VirtualThread[#35]/-1 
@@ -26,7 +32,8 @@ class Actor {
             writer.println(message);
             String response = reader.readLine();
             var threadInfo = Thread.currentThread().toString();
-            var outStr = String.format(OUTPUT_FORMAT, LOG_PREFIX, threadInfo, response);
+            var outStr = String.format(OUTPUT_FORMAT, LOG_PREFIX, id, 
+                                        threadInfo, response);
             var cleanOutStr = cleanThreadInfo(outStr);
             System.out.println(cleanOutStr);
         } catch (Exception ex) { 

@@ -20,19 +20,21 @@ public class Runner {
     }
 
     Void runActor(int i) {
-        new Actor().send(ip, port, "hello - " + i); 
+        new Actor(i).send(ip, port, "hello - " + i); 
         return null;
     } 
 
     void run(String ip, int port) throws Exception {
         try (var scope = new StructuredTaskScope<Void>()) {
-            int numActors = 50;
+            int numActors = 20;
             IntStream.range(0, numActors).forEach(i -> scope.fork(() -> runActor(i))); 
 
             scope.join();
         }
 
-        new Actor().send(ip, port, COMMAND_SHUTDOWN);
+        // poor design but we need to send 'quit' twice :-)
+        new Actor(666).send(ip, port, COMMAND_SHUTDOWN);
+        new Actor(777).send(ip, port, COMMAND_SHUTDOWN);
     }
 
     public static void main(String... args) {

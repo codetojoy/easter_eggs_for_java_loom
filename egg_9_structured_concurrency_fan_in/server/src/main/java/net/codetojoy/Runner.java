@@ -4,8 +4,10 @@ package net.codetojoy;
 
 import java.io.*;
 import java.net.*;
+import java.util.Random;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.stream.IntStream;
+
 import jdk.incubator.concurrent.*;
 
 // see fan-in here: https://openjdk.java.net/jeps/428
@@ -18,16 +20,27 @@ public class Runner {
 
     private AtomicBoolean shutdownReceived = new AtomicBoolean(false);
 
+    private final Random random = new Random(System.currentTimeMillis());
+    private static final int MAX_DELAY_IN_SECONDS = 3;
+
+    void simulateWork() {
+        long delayInMillis = (random.nextInt(MAX_DELAY_IN_SECONDS) + 1) * 1000L;
+        try { Thread.sleep(delayInMillis); } catch (Exception ex) {} 
+    }
+
     Void handle(Socket socket) {
         try (var writer = new PrintWriter(socket.getOutputStream(), true);
              var reader = new BufferedReader(new InputStreamReader(socket.getInputStream()))) {
             var inMessage = reader.readLine();
             var threadInfo = Thread.currentThread().toString();
-            var outMessage = "OK t: " + threadInfo;
+            var outMessage = "OK server-t: " + threadInfo;
 
             if (inMessage.trim().equals(CMD_SHUTDOWN)) {
+                System.out.println(LOG_PREFIX + " received shutdown request");
                 shutdownReceived.getAndSet(true);
                 outMessage = "shutdown ack t: " + threadInfo;
+            } else {
+                simulateWork();
             }
             writer.println(outMessage);
         } catch (Exception ex) {
@@ -44,6 +57,7 @@ public class Runner {
                     scope.fork(() -> handle(socket));
                 }
             } finally {
+                System.out.println(LOG_PREFIX + " shutting down");
                 scope.shutdown();
                 scope.join();
             }
@@ -56,6 +70,7 @@ public class Runner {
         try {
             var port = 5150;
             var serverSocket = new ServerSocket(port);
+            System.out.println(LOG_PREFIX + " listening on " + port);
             runner.serve(serverSocket);
         } catch (Exception ex) {
             System.err.println("TRACER caught exception: " + ex.getMessage());
