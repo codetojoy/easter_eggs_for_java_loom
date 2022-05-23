@@ -4,11 +4,11 @@ package net.codetojoy;
 
 import java.io.*;
 import java.net.*;
-import java.util.*;
-import java.util.concurrent.atomic.*;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.stream.IntStream;
 import jdk.incubator.concurrent.*;
 
+// see fan-in here: https://openjdk.java.net/jeps/428
 // javadoc here: https://download.java.net/java/early_access/loom/docs/api/
 
 public class Runner {
