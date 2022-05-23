@@ -7,4 +7,5 @@
 ### Notes
 
 * examples for [structured concurrency](https://openjdk.java.net/jeps/428) do not use JDK 19 (preview) but a Loom-specific build
+    - we use `sc` for "structured concurrency" in the folder names
     - see README for each example
