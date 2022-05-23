@@ -3,8 +3,6 @@ Summary:
 ---------
 
 * simple client to send messages over a socket to the server in `../server`
-* TODO
-    - write messages in multiple threads
 * NOTE: this is highly contrived and NOT production-ready
 
 To Build:
