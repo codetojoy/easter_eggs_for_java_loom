@@ -4,7 +4,6 @@ package net.codetojoy;
 
 import java.io.*;
 import java.net.*;
-import java.util.*;
 import java.util.stream.IntStream;
 
 public class Runner {
@@ -24,6 +23,7 @@ public class Runner {
         }
     }
 
+    // TODO: send messages on seperate threads
     void emit(String ip, int port) {
         int numMessages = 10;
         IntStream.range(0, numMessages).forEach(i -> send(ip, port, "hello - " + i )); 
