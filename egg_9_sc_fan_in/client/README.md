@@ -8,9 +8,9 @@ Summary:
 To Build:
 ---------
 
-* requires JDK 19.ea.5.lm-open via [SDKMan!](https://sdkman.io/)
+* tested with JDK 19.ea.26-open via [SDKMan!](https://sdkman.io/)
     - this is a special build for Project Loom, *not* the JDK 19 preview
-* Gradle does not yet support JDK 19 preview (as of MAY 2022). Check [here](https://docs.gradle.org/current/userguide/compatibility.html)
+* Gradle does not yet support JDK 19 preview (as of JUN 2022). Check [here](https://docs.gradle.org/current/userguide/compatibility.html)
 * unknown if Maven can be used ¯\_(ツ)_/¯
 
 useful commands:
