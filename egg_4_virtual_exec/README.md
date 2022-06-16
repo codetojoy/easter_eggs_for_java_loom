@@ -16,12 +16,12 @@ To Build:
 
 useful commands:
 
-* `. ./set_jdk.sh`
+* `set env`
     - SDKMan! will set JDK to value in `.sdkmanrc`
 * `./clean.sh`
 * `./compile.sh`
 * `./run.sh`
-* note `./go.sh` does all of the above (minus set_jdk)
+* note `./go.sh` is useful for clean-compile-run cycle
 
 
 Flight Recorder:
