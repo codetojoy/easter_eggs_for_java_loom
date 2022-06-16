@@ -11,7 +11,9 @@ public class Runner {
     }
 
     public static void main(String... args) throws Exception {
+        // set this to a large number: e.g. 5000
         int numThreads = 20;
+
         Thread thread = null;
 
         for (int i = 0; i < numThreads; i++) {
@@ -19,6 +21,8 @@ public class Runner {
             thread.start();
         }
     
+        // this is a pathological example, intended to run out of memory,
+        //  so we just wait on the last thread
         thread.join();
         System.out.println("Ready.");
     }
