@@ -32,7 +32,6 @@
 * [Project Loom Q&A with Ron Pressler](https://www.youtube.com/watch?v=cAHW96omBAc)
     - esp. near 55m25s
 * [Project Loom C5M](https://github.com/ebarlas/project-loom-c5m)
-* blog post: [Notes on structured concurrency, or: Go statement considered harmful](https://vorpus.org/blog/notes-on-structured-concurrency-or-go-statement-considered-harmful) by Nathaniel J. Smith
-
     - 5 million concurrent connections
 * [Conway's Game of Life with virtual threads](https://github.com/ebarlas/game-of-life-csp)
+* blog post: [Notes on structured concurrency, or: Go statement considered harmful](https://vorpus.org/blog/notes-on-structured-concurrency-or-go-statement-considered-harmful) by Nathaniel J. Smith
