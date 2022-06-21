@@ -3,8 +3,7 @@
 package net.codetojoy;
 
 class Worker { 
-    String doWork(String name, String result) throws Exception {
-        new Sleeper().sleep(name, result);
-        return "";
+    void doWork(String name) throws Exception {
+        new Sleeper().sleep(name);
     }
 }

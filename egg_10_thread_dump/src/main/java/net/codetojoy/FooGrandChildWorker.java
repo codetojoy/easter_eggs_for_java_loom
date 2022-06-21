@@ -6,23 +6,25 @@ import jdk.incubator.concurrent.StructuredTaskScope;
 
 class FooGrandChildWorker { 
 
-    String spawn() {
-        String result = "";
+    Void spawn(String name) {
         try {
-            result = new Worker().doWork("taskFoo-worker-from-grandchild", "foo-5150");
+            new Worker().doWork(name);
         } catch (Exception ex) {
             System.err.println("TRACER foo caught ex: " + ex);
+
         }
-        return result;
+        return null;
     }
 
-    String doWork(String name, String result) throws Exception {
-        try (var scope = new StructuredTaskScope.ShutdownOnSuccess<String>()) {
-            scope.fork(() -> spawn());
+    void doWork(String name) throws Exception {
+        try (var scope = new StructuredTaskScope<Void>()) {
+            scope.fork(() -> spawn("worker-A"));
+            scope.fork(() -> spawn("worker-B"));
+            scope.fork(() -> spawn("worker-C"));
             
-            new Sleeper().sleep(name, result);
+            new Sleeper().sleep(name);
             
-            return scope.result();
+            scope.join();
         }
     }
 }

@@ -5,23 +5,23 @@ package net.codetojoy;
 import jdk.incubator.concurrent.StructuredTaskScope;
 
 class FooChildWorker { 
-    String spawn() {
-        String result = "";
+    Void spawn(String name) {
         try {
-            result = new FooGrandChildWorker().doWork("taskFoo-is-grandchild", "foo-5150");
+            new FooGrandChildWorker().doWork(name);
         } catch (Exception ex) {
             System.err.println("TRACER foo caught ex: " + ex);
         }
-        return result;
+        return null;
     }
 
-    String doWork(String name, String result) throws Exception {
-        try (var scope = new StructuredTaskScope.ShutdownOnSuccess<String>()) {
-            scope.fork(() -> spawn());
+    void doWork(String name) throws Exception {
+        try (var scope = new StructuredTaskScope<Void>()) {
+            scope.fork(() -> spawn("bar-A"));
+            scope.fork(() -> spawn("bar-B"));
 
-            new Sleeper().sleep(name, result);
+            new Sleeper().sleep(name);
 
-            return scope.result();
+            scope.join();
         }
     }
 }

@@ -10,24 +10,21 @@ import java.time.Instant;
 public class Runner {
     private static final int TIMEOUT_IN_SECONDS = 120;
 
-    String taskFoo() {
-        String result = "";
+    Void taskFoo() {
         try {
-            result = new FooChildWorker().doWork("taskFoo-is-child", "foo-5150");
+            new FooChildWorker().doWork("foo");
         } catch (Exception ex) {
             System.err.println("TRACER foo caught ex: " + ex);
         }
-        return result;
+        return null;
     }
 
-    String run() throws Exception {
-        try (var scope = new StructuredTaskScope.ShutdownOnSuccess<String>()) {
+    void run() throws Exception {
+        try (var scope = new StructuredTaskScope<Void>()) {
             var foo = scope.fork(() -> taskFoo()); 
 
             var deadline = Instant.now().plusSeconds(TIMEOUT_IN_SECONDS); 
             scope.joinUntil(deadline); 
-
-            return scope.result();
         }
     }
 
@@ -37,8 +34,7 @@ public class Runner {
         try {
             long processId = ProcessHandle.current().pid();
             System.out.println("TRACER running with process id: " + processId);
-            String result = runner.run();
-            System.out.println("TRACER result: " + result);
+            runner.run();
         } catch (Exception ex) {
             System.err.println("TRACER caught exception: " + ex.getMessage());
         }
