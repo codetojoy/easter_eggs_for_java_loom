@@ -2,7 +2,7 @@
 Summary:
 ---------
 
-* this egg illustrates structured concurrency
+* this egg illustrates parent-child relationships in structured concurrency 
     - see "Tree Structure" [here](https://download.java.net/java/early_access/loom/docs/api/jdk.incubator.concurrent/jdk/incubator/concurrent/StructuredTaskScope.html)
 * the idea is to create a small hierarchy of threads in a `StructuredTaskScope`, and then use `jcmd` to interrogate the JVM
 * specifically:
