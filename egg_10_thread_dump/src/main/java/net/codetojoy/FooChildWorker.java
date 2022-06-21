@@ -4,7 +4,7 @@ package net.codetojoy;
 
 import jdk.incubator.concurrent.StructuredTaskScope;
 
-class FooChildWorker extends BaseWorker { 
+class FooChildWorker { 
     String spawn() {
         String result = "";
         try {
@@ -19,16 +19,7 @@ class FooChildWorker extends BaseWorker {
         try (var scope = new StructuredTaskScope.ShutdownOnSuccess<String>()) {
             scope.fork(() -> spawn());
 
-            // sleep in increments for logging 
-            int i = 0;
-            boolean isForever = true;
-            
-            while (isForever) {
-                logInfo(i, name);
-
-                int chunkDelayInMillis = 500;
-                doSleep(chunkDelayInMillis);
-            }
+            new Sleeper().sleep(name, result);
 
             return scope.result();
         }
