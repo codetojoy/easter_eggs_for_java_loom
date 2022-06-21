@@ -1,7 +1,10 @@
 
 import groovy.json.*
 
-def text = new File("thread.dump.json").getText()
+// ---------- main 
+
+def jsonFile = args[0]
+def text = new File(jsonFile).getText()
 def json = new JsonSlurper().parseText(text)
 
 def threadContainers = json['threadDump']['threadContainers']
