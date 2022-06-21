@@ -7,6 +7,3 @@ set -e
 rm -f pid.txt
 ./run.sh 
 
-./thread-dump.sh `cat pid.txt`
-./parse-dump.sh 
-
