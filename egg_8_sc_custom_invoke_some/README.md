@@ -11,7 +11,7 @@ Summary:
 To Build:
 ---------
 
-* tested with JDK 19.ea.26-open via [SDKMan!](https://sdkman.io/)
+* tested with JDK 19.ea.27-open via [SDKMan!](https://sdkman.io/)
 * Gradle does not yet support JDK 19 preview (as of JUN 2022). Check [here](https://docs.gradle.org/current/userguide/compatibility.html)
 * unknown if Maven can be used ¯\_(ツ)_/¯
 
