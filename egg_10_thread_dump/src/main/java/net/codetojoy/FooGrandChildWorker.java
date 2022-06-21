@@ -16,19 +16,22 @@ class FooGrandChildWorker extends BaseWorker {
         return result;
     }
 
-    String doWork(StructuredTaskScope scope, String name, String result) throws Exception {
-        scope.fork(() -> spawn());
+    String doWork(String name, String result) throws Exception {
+        try (var scope = new StructuredTaskScope.ShutdownOnSuccess<String>()) {
+            scope.fork(() -> spawn());
+            
+            // sleep in increments for logging
+            int i = 0;
+            boolean isForever = true;
+            
+            while (isForever) {
+                logInfo(i, name);
 
-        // sleep in increments for logging 
-        int chunkDelayInMillis = 500;
-        int i = 0;
-        boolean isForever = true;
-        
-        while (isForever) {
-            logInfo(i, name);
-            doSleep(chunkDelayInMillis);
+                int chunkDelayInMillis = 500;
+                doSleep(chunkDelayInMillis);
+            }
+            
+            return scope.result();
         }
-
-        return result;
     }
 }
