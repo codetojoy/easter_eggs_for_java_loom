@@ -4,7 +4,7 @@ package net.codetojoy;
 
 import jdk.incubator.concurrent.StructuredTaskScope;
 
-class FooGrandChildWorker { 
+class BarWorker { 
 
     Void spawn(String name) {
         try {

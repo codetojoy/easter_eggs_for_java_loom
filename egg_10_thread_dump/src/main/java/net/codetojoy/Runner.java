@@ -3,7 +3,9 @@
 package net.codetojoy;
 
 import jdk.incubator.concurrent.StructuredTaskScope;
+
 import java.time.Instant;
+import java.io.*;
 
 // javadoc here: https://download.java.net/java/early_access/loom/docs/api/
 
@@ -12,7 +14,7 @@ public class Runner {
 
     Void taskFoo() {
         try {
-            new FooChildWorker().doWork("foo");
+            new FooWorker().doWork("foo");
         } catch (Exception ex) {
             System.err.println("TRACER foo caught ex: " + ex);
         }
@@ -28,12 +30,19 @@ public class Runner {
         }
     }
 
-    public static void main(String... args) {
+    void writeProcessId() throws Exception {
+        long processId = ProcessHandle.current().pid();
+        String fileName = "pid.txt";
+        try (Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(fileName), "utf-8"))) {
+           writer.write("" + processId);
+        }
+    }
+
+    public static void main(String... args) throws Exception {
         var runner = new Runner(); 
 
         try {
-            long processId = ProcessHandle.current().pid();
-            System.out.println("TRACER running with process id: " + processId);
+            runner.writeProcessId();
             runner.run();
         } catch (Exception ex) {
             System.err.println("TRACER caught exception: " + ex.getMessage());

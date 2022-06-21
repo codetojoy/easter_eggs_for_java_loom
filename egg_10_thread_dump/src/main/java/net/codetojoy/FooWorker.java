@@ -4,10 +4,10 @@ package net.codetojoy;
 
 import jdk.incubator.concurrent.StructuredTaskScope;
 
-class FooChildWorker { 
+class FooWorker { 
     Void spawn(String name) {
         try {
-            new FooGrandChildWorker().doWork(name);
+            new BarWorker().doWork(name);
         } catch (Exception ex) {
             System.err.println("TRACER foo caught ex: " + ex);
         }
