@@ -2,7 +2,8 @@
 // note:  I no longer own this domain
 package net.codetojoy;
 
-import jdk.incubator.concurrent.StructuredTaskScope;
+// Simply sleeps forever
+// We just want to do 'work' so that we can inspect the JVM with `jcmd`.
 
 class Sleeper { 
     private void doSleep(long delayInMillis) throws InterruptedException {

@@ -16,6 +16,9 @@ class BarWorker {
         return null;
     }
 
+    // Create 3 worker threads, then sleep forever.
+    // We simply want to interrogate the JVM, so the actual work doesn't matter.
+    // 
     void doWork(String name) throws Exception {
         try (var scope = new StructuredTaskScope<Void>()) {
             scope.fork(() -> spawn("worker-A"));

@@ -21,6 +21,9 @@ public class Runner {
         return null;
     }
 
+    // We simply want to interrogate the JVM, so the actual work doesn't matter.
+    // Create a Foo thread, then wait for awhile so that user can interrogate the JVM.
+    // 
     void run() throws Exception {
         try (var scope = new StructuredTaskScope<Void>()) {
             var foo = scope.fork(() -> taskFoo()); 

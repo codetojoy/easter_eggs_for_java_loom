@@ -14,6 +14,9 @@ class FooWorker {
         return null;
     }
 
+    // Create 2 Bar threads, then sleep forever.
+    // We simply want to interrogate the JVM, so the actual work doesn't matter.
+    // 
     void doWork(String name) throws Exception {
         try (var scope = new StructuredTaskScope<Void>()) {
             scope.fork(() -> spawn("bar-A"));
