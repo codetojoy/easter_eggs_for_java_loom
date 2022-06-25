@@ -27,10 +27,11 @@ class FooWorker {
     // We simply want to interrogate the JVM, so the actual work doesn't matter.
     // 
     void doWork(String name) throws Exception {
-        var scope = new Scope();
-        List<Callable<Void>> tasks = new ArrayList<Callable<Void>>();
+        List<Callable<Void>> tasks = new ArrayList<>();
         tasks.add(() -> spawn("bar-A"));
         tasks.add(() -> spawn("bar-B"));
+
+        var scope = new Scope();
         scope.run(tasks, () -> sleep(name));
     }
 }

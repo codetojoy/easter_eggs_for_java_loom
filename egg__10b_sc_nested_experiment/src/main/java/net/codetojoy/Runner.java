@@ -41,7 +41,7 @@ public class Runner {
         }
     }
 
-    public static void main(String... args) throws Exception {
+    public static void main(String... args) {
         var runner = new Runner(); 
 
         try {
