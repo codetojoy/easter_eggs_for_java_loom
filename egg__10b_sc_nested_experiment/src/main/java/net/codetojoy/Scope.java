@@ -1,0 +1,34 @@
+
+// note:  I no longer own this domain
+package net.codetojoy;
+
+import java.util.List;
+import java.util.concurrent.Callable;
+
+import jdk.incubator.concurrent.StructuredTaskScope;
+
+class Scope { 
+    void run(List<Callable<Void>> tasks, Runnable mainWorker) throws Exception {
+        try (var scope = new StructuredTaskScope<Void>()) {
+            for (var task : tasks) {
+                scope.fork(() -> task.call());
+            }
+
+            mainWorker.run();
+
+            scope.join();
+        }
+    }
+
+    void run(List<Callable<Void>> tasks, String name) throws Exception {
+        try (var scope = new StructuredTaskScope<Void>()) {
+            for (var task : tasks) {
+                scope.fork(() -> task.call());
+            }
+
+            new Sleeper().sleep(name);
+
+            scope.join();
+        }
+    }
+}
