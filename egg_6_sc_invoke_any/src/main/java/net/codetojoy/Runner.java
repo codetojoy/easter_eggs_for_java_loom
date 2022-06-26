@@ -5,7 +5,7 @@ package net.codetojoy;
 import java.time.Duration;
 import jdk.incubator.concurrent.*;
 
-// javadoc here: https://download.java.net/java/early_access/loom/docs/api/
+// javadoc here: https://download.java.net/java/early_access/jdk19/docs/api/jdk.incubator.concurrent/jdk/incubator/concurrent/package-summary.html
 
 public class Runner {
     int taskFooDelayInMillis = 2000;

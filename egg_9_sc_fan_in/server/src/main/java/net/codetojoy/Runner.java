@@ -11,7 +11,7 @@ import java.util.stream.IntStream;
 import jdk.incubator.concurrent.*;
 
 // see fan-in here: https://openjdk.java.net/jeps/428
-// javadoc here: https://download.java.net/java/early_access/loom/docs/api/
+// javadoc here: https://download.java.net/java/early_access/jdk19/docs/api/jdk.incubator.concurrent/jdk/incubator/concurrent/package-summary.html
 
 public class Runner {
     private static final String LOG_PREFIX = "TRACER Runner ";

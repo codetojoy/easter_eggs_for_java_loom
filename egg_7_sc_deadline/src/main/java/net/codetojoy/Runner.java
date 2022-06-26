@@ -5,7 +5,7 @@ package net.codetojoy;
 import java.time.*;
 import jdk.incubator.concurrent.StructuredTaskScope;
 
-// javadoc here: https://download.java.net/java/early_access/loom/docs/api/
+// javadoc here: https://download.java.net/java/early_access/jdk19/docs/api/jdk.incubator.concurrent/jdk/incubator/concurrent/package-summary.html
 
 public class Runner {
     long taskFooDelayInMillis = 20000L;

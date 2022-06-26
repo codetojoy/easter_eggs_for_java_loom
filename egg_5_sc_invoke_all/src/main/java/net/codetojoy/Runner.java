@@ -6,7 +6,7 @@ import java.time.Duration;
 import java.util.concurrent.*;
 import jdk.incubator.concurrent.*;
 
-// javadoc here: https://download.java.net/java/early_access/loom/docs/api/
+// javadoc here: https://download.java.net/java/early_access/jdk19/docs/api/jdk.incubator.concurrent/jdk/incubator/concurrent/package-summary.html
 
 public class Runner {
     long taskFooDelayInMillis = 1000L;

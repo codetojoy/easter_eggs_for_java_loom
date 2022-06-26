@@ -7,11 +7,11 @@ import java.util.concurrent.*;
 import java.util.concurrent.atomic.*;
 import jdk.incubator.concurrent.*;
 
-// javadoc here: https://download.java.net/java/early_access/loom/docs/api/
+// javadoc here: https://download.java.net/java/early_access/jdk19/docs/api/jdk.incubator.concurrent/jdk/incubator/concurrent/package-summary.html
 
 // NOTE: this is NOT production-ready, just an experiment
 // 
-// ref: https://github.com/openjdk/loom/blob/fibers/src/jdk.incubator.concurrent/share/classes/jdk/incubator/concurrent/StructuredTaskScope.java
+// ref: https://github.com/openjdk/jdk19/blob/master/src/jdk.incubator.concurrent/share/classes/jdk/incubator/concurrent/StructuredTaskScope.java
 // 
 // this is similar in spirit to StructuredTaskScope.ShutdownOnSuccess<T>, but for N tasks
 // i.e. given M tasks, success is defined when N of them complete successfully
