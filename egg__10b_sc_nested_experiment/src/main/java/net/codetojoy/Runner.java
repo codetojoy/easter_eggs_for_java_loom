@@ -7,7 +7,7 @@ import jdk.incubator.concurrent.StructuredTaskScope;
 import java.time.Instant;
 import java.io.*;
 
-// javadoc here: https://download.java.net/java/early_access/loom/docs/api/
+// javadoc here: https://download.java.net/java/early_access/jdk19/docs/api/jdk.incubator.concurrent/jdk/incubator/concurrent/package-summary.html
 
 public class Runner {
     private static final int TIMEOUT_IN_SECONDS = 120;
