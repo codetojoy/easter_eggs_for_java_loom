@@ -13,8 +13,8 @@ import java.util.*;
 public class Runner {
     private static final int TIMEOUT_IN_SECONDS = 10;
 
-    List<Integer> taskFoo() {
-        List<Integer> result = new ArrayList<>();
+    List<Info> taskFoo() {
+        List<Info> result = new ArrayList<>();
 
         try {
             result = new FooWorker().doWork("foo");
@@ -35,9 +35,9 @@ public class Runner {
             var deadline = Instant.now().plusSeconds(TIMEOUT_IN_SECONDS); 
             scope.joinUntil(deadline); 
 
-            var results = foo.resultNow();
-            for (var i : results) {
-                System.out.println("TRACER received i: " + i);
+            var infos = foo.resultNow();
+            for (var info : infos) {
+                System.out.println("TRACER received: " + info.toString());
             };
         }
     }
