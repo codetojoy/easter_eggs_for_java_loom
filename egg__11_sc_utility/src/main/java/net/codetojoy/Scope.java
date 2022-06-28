@@ -7,7 +7,7 @@ import java.util.stream.Stream;
 import java.util.concurrent.Callable;
 
 class Scope<T> { 
-    Stream<T> run(List<Callable<T>> tasks) throws Exception {
+    Stream<T> forkAll(List<Callable<T>> tasks) throws Exception {
         try (var scope = new CustomScope<T>()) {
             for (var task : tasks) {
                 scope.fork(() -> task.call());

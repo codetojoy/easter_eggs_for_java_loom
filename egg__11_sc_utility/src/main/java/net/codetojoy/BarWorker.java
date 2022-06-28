@@ -24,12 +24,12 @@ class BarWorker {
 
     Stream<Info> doWork(String name) throws Exception {
         List<Callable<Info>> tasks = new ArrayList<>();
-        tasks.add(() -> spawn("worker-A"));
-        tasks.add(() -> spawn("worker-B"));
-        tasks.add(() -> spawn("worker-C"));
+        tasks.add(() -> spawn("worker-A [" + name + "]"));
+        tasks.add(() -> spawn("worker-B [" + name + "]"));
+        tasks.add(() -> spawn("worker-C [" + name + "]"));
 
         var scope = new Scope<Info>();
-        var results = scope.run(tasks);
+        var results = scope.forkAll(tasks);
         return results;
     }
 }
