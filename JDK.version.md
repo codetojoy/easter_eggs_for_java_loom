@@ -1,1 +1,1 @@
-19.ea.28-open via [SDKMan!](https://sdkman.io/) 
+19.ea.29-open via [SDKMan!](https://sdkman.io/) 
