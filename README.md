@@ -15,6 +15,7 @@
 
 * JEP 425 [Virtual Threads](https://openjdk.java.net/jeps/425)
 * JEP 428 [Structured Concurrency](https://openjdk.java.net/jeps/428)
+* Brian Goetz on [Virtual Threads](https://www.infoq.com/articles/java-virtual-threads/)
 * [Java 19 Virtual Threads - JEP Café](https://www.youtube.com/watch?v=lKSSBvRDmTg)
 * [Project Loom: Modern Scalable Concurrency for the Java Platform](https://www.youtube.com/watch?v=EO9oMiL1fFo) by Ron Pressler
     - 12m00s : "codes like sync, scales like async"
