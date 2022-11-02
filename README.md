@@ -10,6 +10,7 @@
 * includes examples for [structured concurrency](https://openjdk.java.net/jeps/428), which is "incubator" in JDK 19 
     - we use `sc` for "structured concurrency" in the folder names
 * see README for each example
+* examples have Bash scripts and Maven scripts
 
 ### Resources
 
