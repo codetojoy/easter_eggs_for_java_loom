@@ -40,7 +40,7 @@ useful commands:
 
 To Run:
 ---------
-* in terminal 1: `mvn-run.sh` or `./run.sh`
+* in terminal 1: `mvn-run.sh` (Maven) or `./run.sh` (Bash)
     - this runs `Runner.java`
 * in terminal 2: `./list-thread-info.sh`
     - this calls `jcmd` and parses the output with `DumpParser.groovy`
