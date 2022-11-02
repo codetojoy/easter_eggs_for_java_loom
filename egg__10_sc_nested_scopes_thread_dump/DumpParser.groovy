@@ -16,11 +16,11 @@ def threadContainers = json['threadDump']['threadContainers']
 threadContainers.findAll { it['container'] =~ /.*ThreadFlock.*/ }.each { threadContainer ->
     def owner = threadContainer['owner']
     def threads = threadContainer['threads']
-    def threadCount = threadContainer['threadCount'] as int
     def qualifier = ""
-    if (threadCount == 1) { qualifier = "(likely Foo, created by main)      " }
-    if (threadCount == 2) { qualifier = "(likely a Bar, created by Foo)     " }
-    if (threadCount == 3) { qualifier = "(likely a Worker, created by a Bar)" }
+    def container = threadContainer['container']
+    if (container =~ /^main.*/) { qualifier = "(Foo, created by main)    " }
+    if (container =~ /^foo.*/) { qualifier =  "(Bar, created by Foo)     " }
+    if (container =~ /^bar-.*/) { qualifier =  "(Worker, created by a Bar)" }
 
     threads.each { thread -> 
         def threadId = thread['tid']

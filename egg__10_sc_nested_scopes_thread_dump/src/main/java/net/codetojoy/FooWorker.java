@@ -18,7 +18,7 @@ class FooWorker {
     // We simply want to interrogate the JVM, so the actual work doesn't matter.
     // 
     void doWork(String name) throws Exception {
-        try (var scope = new StructuredTaskScope<Void>()) {
+        try (var scope = new StructuredTaskScope<Void>(name, Thread.ofVirtual().factory())) {
             scope.fork(() -> spawn("bar-A"));
             scope.fork(() -> spawn("bar-B"));
 

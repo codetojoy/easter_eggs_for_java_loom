@@ -25,7 +25,8 @@ public class Runner {
     // Create a Foo thread, then wait for awhile so that user can interrogate the JVM.
     // 
     void run() throws Exception {
-        try (var scope = new StructuredTaskScope<Void>()) {
+        var name = "main";
+        try (var scope = new StructuredTaskScope<Void>(name, Thread.ofVirtual().factory())) {
             var foo = scope.fork(() -> taskFoo()); 
 
             var deadline = Instant.now().plusSeconds(TIMEOUT_IN_SECONDS); 
