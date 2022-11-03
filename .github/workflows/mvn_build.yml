@@ -1,0 +1,40 @@
+
+name: Java CI 
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        maven: [ '3.8.6' ]
+
+    steps:
+      - name: get code
+        uses: actions/checkout@v3
+
+      - name: Set up JDK 19
+        uses: actions/setup-java@v3
+        with:
+          java-version: '19'
+          distribution: 'adopt'
+
+      - name: Setup Maven Action
+        uses: s4u/setup-maven-action@v1.5.1
+        with:
+          java-version: 19
+          maven-version: ${{ matrix.maven }}
+
+      - name: run build script
+        run: ./mvn-build-all.sh
