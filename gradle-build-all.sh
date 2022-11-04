@@ -10,7 +10,8 @@ set -e
 
 ./gradlew egg_4_virtual_exec:compileJava
 
-# cd $MY_HOME/egg_5_sc_invoke_all
+./gradlew egg_5_sc_invoke_all:compileJava 
+
 # cd $MY_HOME/egg_6_sc_invoke_any
 # cd $MY_HOME/egg_7_sc_deadline
 # cd $MY_HOME/egg_8_sc_custom_invoke_some
