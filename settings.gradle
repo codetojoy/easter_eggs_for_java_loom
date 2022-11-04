@@ -1,4 +1,5 @@
 include ([
 'egg_1_max_p_threads',
-'egg_2_max_v_threads'
+'egg_2_max_v_threads',
+'egg_3_legacy_exec'
 ])

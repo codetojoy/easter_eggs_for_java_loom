@@ -6,7 +6,7 @@ set -e
 
 ./gradlew egg_2_max_v_threads:compileJava
 
-# cd $MY_HOME/egg_3_legacy_exec
+./gradlew egg_3_legacy_exec:compileJava
 
 # cd $MY_HOME/egg_4_virtual_exec
 
