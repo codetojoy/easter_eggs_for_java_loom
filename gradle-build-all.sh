@@ -2,7 +2,7 @@
 
 set -e 
 
-gradle egg_1_max_p_threads:compileJava
+./gradlew egg_1_max_p_threads:compileJava
 
 # cd $MY_HOME/egg_2_max_v_threads
 
