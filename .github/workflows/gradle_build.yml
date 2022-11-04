@@ -28,14 +28,5 @@ jobs:
       - name: Setup Gradle
         uses: gradle/gradle-build-action@v2
 
-      - name: cp 1
-        run: echo "TRACER cp 1 `ls -l settings.gradle`"
-
-      - name: cp 2
-        run: echo "TRACER cp 2 `ls -l gradlew`"
-
-      - name: cp 3
-        run: ./gradlew --version
-
-      # - name: run build script
-      #   run: ./gradlew egg_1_max_p_threads:compileJava
+      - name: run build script
+         run: ./gradle-build-all.sh 
