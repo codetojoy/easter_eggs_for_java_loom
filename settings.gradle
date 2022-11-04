@@ -9,7 +9,8 @@ include ([
 'egg_8_sc_custom_invoke_some',
 'egg_9_sc_fan_in_client',
 'egg_9_sc_fan_in_server',
-'egg__10_sc_nested_scopes_thread_dump'
+'egg__10_sc_nested_scopes_thread_dump',
+'egg__10b_sc_nested_experiment'
 ])
 
 for (project in rootProject.children) {

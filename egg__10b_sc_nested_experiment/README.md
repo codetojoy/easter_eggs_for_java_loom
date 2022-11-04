@@ -14,11 +14,15 @@ Summary:
     - Bash scripts are used to create a thread dump (in JSON), using `pid.txt`
     - a Groovy program parses the JSON and prints out salient thread ids
 
+To Build (using Gradle):
+---------------------
+
+* `./gradle-build.sh`
+
 To Build (using Maven):
 ---------------------
 
-* `./mvn-clean.sh`
-* `./mvn-compile.sh`
+* `./mvn-build.sh`
 
 To Build (using Bash):
 ----------------------
@@ -32,7 +36,10 @@ useful commands:
 
 To Run:
 ---------
-* in terminal 1: `mvn-run.sh` (Maven) or `./run.sh` (Bash)
+* in terminal 1: 
+    - Gradle: `gradle-run.sh`
+    - Maven: `mvn-run.sh`
+    - Bash: `./run.sh`
     - this runs `Runner.java`
 * in terminal 2: `./list-thread-info.sh`
     - this calls `jcmd` and parses the output with `DumpParser.groovy`
