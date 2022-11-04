@@ -26,7 +26,7 @@ cd $MY_HOME/egg_7_sc_deadline
 ./mvn-build.sh 
 
 cd $MY_HOME/egg_8_sc_custom_invoke_some
-mvn install && ./mvn-clean.sh && ./mvn-compile.sh 
+./mvn-build.sh 
 
 cd $MY_HOME/egg_9_sc_fan_in/client
 mvn install && ./mvn-clean.sh && ./mvn-compile.sh 

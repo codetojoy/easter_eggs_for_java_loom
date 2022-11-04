@@ -16,7 +16,8 @@ set -e
 
 ./gradlew egg_7_sc_deadline:compileJava 
 
-# cd $MY_HOME/egg_8_sc_custom_invoke_some
+./gradlew egg_8_sc_custom_invoke_some:compileJava
+
 # cd $MY_HOME/egg_9_sc_fan_in/client
 # cd $MY_HOME/egg_9_sc_fan_in/server
 # cd $MY_HOME/egg__10_sc_nested_scopes_thread_dump
