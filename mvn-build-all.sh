@@ -38,10 +38,10 @@ cd $MY_HOME/egg__10_sc_nested_scopes_thread_dump
 ./mvn-build.sh 
 
 cd $MY_HOME/egg__10b_sc_nested_experiment
-mvn install && ./mvn-clean.sh && ./mvn-compile.sh 
+./mvn-build.sh
 
 cd $MY_HOME/egg__11_sc_utility
-mvn install && ./mvn-clean.sh && ./mvn-compile.sh 
+./mvn-build.sh
 
 cd $MY_HOME/egg__11b_sc_utility
 mvn install && ./mvn-clean.sh && ./mvn-compile.sh 

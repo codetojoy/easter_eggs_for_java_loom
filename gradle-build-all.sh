@@ -23,8 +23,10 @@ set -e
 
 ./gradlew egg__10_sc_nested_scopes_thread_dump:compileJava
 
-# cd $MY_HOME/egg__10b_sc_nested_experiment
-# cd $MY_HOME/egg__11_sc_utility
+./gradlew egg__10b_sc_nested_experiment:compileJava
+
+./gradlew egg__11_sc_utility:compileJava
+
 # cd $MY_HOME/egg__11b_sc_utility
 
 echo "Ready."
