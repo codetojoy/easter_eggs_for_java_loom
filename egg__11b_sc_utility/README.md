@@ -8,15 +8,20 @@ Build Notes:
 ------------
 
 * tested with [this jdk](../JDK.version.md)
+* tested with [this version](../Gradle.version.md) of Gradle 
 * tested with [this version](../Maven.version.md) of Maven 
-* Gradle does not yet support JDK 19 preview (as of NOV 2022). Check [here](https://docs.gradle.org/current/userguide/compatibility.html)
 
-To Build (using Maven):
+To Run (using Gradle):
 ---------------------
 
-* `./mvn-go.sh` will clean, compile, exec 
+* `./gradle-run.sh`
 
-To Build (using Bash):
+To Run (using Maven):
+---------------------
+
+* `./mvn-run.sh`
+
+To Run (using Bash):
 ----------------------
 
 useful commands:

@@ -27,6 +27,6 @@ set -e
 
 ./gradlew egg__11_sc_utility:compileJava
 
-# cd $MY_HOME/egg__11b_sc_utility
+./gradlew egg__11b_sc_utility:compileJava
 
 echo "Ready."
