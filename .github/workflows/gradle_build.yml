@@ -1,5 +1,5 @@
 
-name: Java build with Maven
+name: Java build with Gradle
 
 on:
   workflow_dispatch:
@@ -15,10 +15,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        maven: [ '3.8.6' ]
-
     steps:
       - name: get code
         uses: actions/checkout@v3
@@ -29,11 +25,8 @@ jobs:
           java-version: '19'
           distribution: 'adopt'
 
-      - name: Setup Maven Action
-        uses: s4u/setup-maven-action@v1.5.1
-        with:
-          java-version: 19
-          maven-version: ${{ matrix.maven }}
+      - name: Setup Gradle
+        uses: gradle/gradle-build-action@v2
 
       - name: run build script
-        run: ./mvn-build-all.sh
+        run: ./gradle-build-all.sh
