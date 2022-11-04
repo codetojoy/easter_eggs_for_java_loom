@@ -35,7 +35,7 @@ jobs:
         run: echo "TRACER cp 2 `ls -l gradlew`"
 
       - name: cp 3
-        run: echo "TRACER cp 3 `./gradlew --version`"
+        run: ./gradlew --version
 
       # - name: run build script
       #   run: ./gradlew egg_1_max_p_threads:compileJava
