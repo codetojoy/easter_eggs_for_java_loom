@@ -6,5 +6,15 @@ include ([
 'egg_5_sc_invoke_all',
 'egg_6_sc_invoke_any',
 'egg_7_sc_deadline',
-'egg_8_sc_custom_invoke_some'
+'egg_8_sc_custom_invoke_some',
+'egg_9_sc_fan_in_client',
+'egg_9_sc_fan_in_server'
 ])
+
+for (project in rootProject.children) {
+    if (project.name == 'egg_9_sc_fan_in_client') {
+        project.projectDir = file("./egg_9_sc_fan_in/client")
+    } else if (project.name == 'egg_9_sc_fan_in_server') {
+        project.projectDir = file("./egg_9_sc_fan_in/server")
+    }
+}
