@@ -20,7 +20,7 @@ cd $MY_HOME/egg_5_sc_invoke_all
 ./mvn-build.sh 
 
 cd $MY_HOME/egg_6_sc_invoke_any
-mvn install && ./mvn-clean.sh && ./mvn-compile.sh 
+./mvn-build.sh 
 
 cd $MY_HOME/egg_7_sc_deadline
 mvn install && ./mvn-clean.sh && ./mvn-compile.sh 

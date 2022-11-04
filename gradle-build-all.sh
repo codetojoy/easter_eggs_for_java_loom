@@ -12,7 +12,8 @@ set -e
 
 ./gradlew egg_5_sc_invoke_all:compileJava 
 
-# cd $MY_HOME/egg_6_sc_invoke_any
+./gradlew egg_6_sc_invoke_any:compileJava 
+
 # cd $MY_HOME/egg_7_sc_deadline
 # cd $MY_HOME/egg_8_sc_custom_invoke_some
 # cd $MY_HOME/egg_9_sc_fan_in/client
