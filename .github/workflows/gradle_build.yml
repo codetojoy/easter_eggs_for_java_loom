@@ -29,4 +29,5 @@ jobs:
         uses: gradle/gradle-build-action@v2
 
       - name: run build script
-        run: ./gradle-build-all.sh
+        run: ../gradlew compileJava
+        working_directory: egg_1_max_p_threads
