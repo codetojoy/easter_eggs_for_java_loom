@@ -24,7 +24,7 @@ To Run (using Maven):
 
 * `./mvn-run.sh`
 
-To Build (using Bash):
+To Run (using Bash):
 ----------------------
 
 * `./run.sh`

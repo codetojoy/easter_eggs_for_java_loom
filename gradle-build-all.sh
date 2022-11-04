@@ -4,7 +4,7 @@ set -e
 
 ./gradlew egg_1_max_p_threads:compileJava
 
-# cd $MY_HOME/egg_2_max_v_threads
+./gradlew egg_2_max_v_threads:compileJava
 
 # cd $MY_HOME/egg_3_legacy_exec
 
