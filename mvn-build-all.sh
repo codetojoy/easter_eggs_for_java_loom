@@ -14,7 +14,7 @@ cd $MY_HOME/egg_3_legacy_exec
 ./mvn-build.sh
 
 cd $MY_HOME/egg_4_virtual_exec
-mvn install && ./mvn-clean.sh && ./mvn-compile.sh 
+./mvn-build.sh 
 
 cd $MY_HOME/egg_5_sc_invoke_all
 mvn install && ./mvn-clean.sh && ./mvn-compile.sh 
