@@ -5,4 +5,5 @@ include ([
 'egg_4_virtual_exec',
 'egg_5_sc_invoke_all',
 'egg_6_sc_invoke_any',
+'egg_7_sc_deadline'
 ])
