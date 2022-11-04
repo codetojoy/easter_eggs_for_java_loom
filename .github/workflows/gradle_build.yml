@@ -30,4 +30,4 @@ jobs:
 
       - name: run build script
         run: ../gradlew compileJava
-        working_directory: egg_1_max_p_threads
+        working-directory: egg_1_max_p_threads
