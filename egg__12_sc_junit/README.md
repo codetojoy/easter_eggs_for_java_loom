@@ -3,7 +3,6 @@ Summary:
 ---------
 
 * address how to run JUnit5 with preview/incubating features
-* Gradle Groovy & Gradle Kotlin
 
 Build Notes:
 ------------
@@ -17,6 +16,11 @@ To Run (using Gradle):
 
 * with Groovy: `./gradle-groovy-test.sh`
 * with Kotlin: `./gradle-kotlin-test.sh`
+
+To Run (using Maven):
+---------------------
+
+* `./mvn-test.sh`
 
 useful commands:
 

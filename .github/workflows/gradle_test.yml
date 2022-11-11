@@ -12,7 +12,7 @@ permissions:
   contents: read
 
 jobs:
-  test-groovy:
+  test-gradle-groovy:
     runs-on: ubuntu-latest
 
     steps:
@@ -29,7 +29,7 @@ jobs:
         run: ./gradle-groovy-test.sh 
         working-directory: egg__12_sc_junit
 
-  test-kotlin:
+  test-gradle-kotlin:
     runs-on: ubuntu-latest
 
     steps:
@@ -45,3 +45,27 @@ jobs:
       - name: run build script
         run: ./gradle-kotlin-test.sh 
         working-directory: egg__12_sc_junit
+
+  test-maven:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: get code
+        uses: actions/checkout@v3
+
+      - name: Set up JDK 19
+        uses: actions/setup-java@v3
+        with:
+          java-version: '19'
+          distribution: 'adopt'
+
+      - name: Setup Maven Action
+        uses: s4u/setup-maven-action@v1.5.1
+        with:
+          java-version: 19
+          maven-version: 3.8.6
+
+      - name: run build script
+        run: ./mvn-test.sh
+        working-directory: egg__12_sc_junit
+

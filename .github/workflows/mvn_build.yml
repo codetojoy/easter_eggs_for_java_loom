@@ -35,5 +35,5 @@ jobs:
           java-version: 19
           maven-version: ${{ matrix.maven }}
 
-      # - name: run build script
-      #   run: ./mvn-build-all.sh
+      - name: run build script
+        run: ./mvn-build-all.sh
