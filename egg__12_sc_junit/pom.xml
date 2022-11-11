@@ -160,18 +160,11 @@
         </plugin>
 
       <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>exec-maven-plugin</artifactId>
-        <version>3.1.0</version>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>2.22.1</version>
         <configuration>
-          <executable>${java.home}/bin/java</executable>
-          <arguments>
-            <argument>--add-modules=jdk.incubator.concurrent</argument>
-            <argument>--enable-preview</argument>
-            <argument>--class-path</argument>
-            <classpath/>
-            <argument>net.codetojoy.Runner</argument>
-          </arguments>
+          <argLine>--add-modules=jdk.incubator.concurrent --enable-preview</argLine>
         </configuration>
       </plugin>
 
