@@ -49,6 +49,9 @@ cd $MY_HOME/egg__11b_sc_utility
 cd $MY_HOME/egg__12_sc_junit
 ./mvn-build.sh 
 
+cd $MY_HOME/egg_StackOverflow_74464598
+./mvn-build.sh
+
 cd $MY_HOME
 
 echo "Ready."

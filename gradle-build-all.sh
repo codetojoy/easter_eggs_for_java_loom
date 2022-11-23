@@ -31,4 +31,6 @@ set -e
 
 ./gradlew clean egg__12_sc_junit:compileJava
 
+./gradlew clean egg_StackOverflow_74464598:compileJava
+
 echo "Ready."
