@@ -13,7 +13,8 @@ include ([
 'egg__10b_sc_nested_experiment',
 'egg__11_sc_utility',
 'egg__11b_sc_utility',
-'egg__12_sc_junit'
+'egg__12_sc_junit',
+'egg_StackOverflow_74464598'
 ])
 
 for (project in rootProject.children) {
