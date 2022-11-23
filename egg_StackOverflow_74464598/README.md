@@ -2,12 +2,7 @@
 Summary:
 ---------
 
-* this egg illustrates structured concurrency
-* two tasks: `foo` and `bar`
-    - can be configured to succeed or fail
-* NOTE
-    - happy path: one task takes X seconds; the other takes Y seconds
-    - when one task is configured to fail, the other is interrupted
+* code for [this StackOverflow question](https://stackoverflow.com/questions/74464598)
 
 Build Notes:
 ------------
@@ -26,7 +21,7 @@ To Run (using Maven):
 ---------------------
 
 * `./mvn-run.sh`
-    - set DO_SHUTDOWN command-line arg in `pom.xml`
+    - set DO_SHUTDOWN command-line arg by editing `pom.xml`
 
 To Run (using Bash):
 ----------------------
