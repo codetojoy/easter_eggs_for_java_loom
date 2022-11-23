@@ -15,33 +15,36 @@ public class TaskRunner {
         this.doShutdown = doShutdown;
     }
 
-    private String taskGetNumItemsFromRequest() { 
+    private String taskGetNumItemsFromRequest() throws Exception { 
         String result = "";
         try {
             result = new Worker().doWork(taskDelayInMillis, "taskGetNumItemsFromRequest", "numitems-5150");
         } catch (Exception ex) {
             System.err.println("TRACER TaskRunner num-items caught ex: " + ex);
+            throw ex;
         }
         return result;
     }
 
-    private String taskGetPriceFromDB() { 
+    private String taskGetPriceFromDB() throws Exception { 
         String result = "";
         try {
             result = new Worker().doWork(taskDelayInMillis, "taskGetPriceFromDB", "price-6160");
         } catch (Exception ex) {
             System.err.println("TRACER TaskRunner get-price caught ex: " + ex);
+            throw ex;
         }
         return result;
     }
 
     public String run() throws Exception {
-        var result = "";
+        var result = "error";
+
         try (var scope = new StructuredTaskScope.ShutdownOnFailure()) {
             var numOrders = scope.fork(() -> taskGetNumItemsFromRequest()); 
             var price = scope.fork(() -> taskGetPriceFromDB());
 
-            try { Thread.sleep(500L); } catch (Exception ex) {} 
+            try { Thread.sleep(1000L); } catch (Exception ex) {} 
 
             if (doShutdown) {
                 System.out.println("TRACER TaskRunner shutting down");
@@ -51,17 +54,11 @@ public class TaskRunner {
             }
             
             scope.join();          
+            scope.throwIfFailed();
 
-            try {
-                scope.throwIfFailed();
+            result = numOrders.resultNow() + " " + price.resultNow();
 
-                result = numOrders.resultNow() + " " + price.resultNow();
-            } catch (Exception ex) {
-                if (ex != null) {
-                    System.err.println("TRACER TaskRunner inner caught ex: " + ex.getClass());
-                    System.err.println("TRACER TaskRunner inner caught ex: " + ex.getMessage());
-                }
-            } 
+            System.out.println("TRACER TaskRunner post result");
         } catch (Exception ex) {
             if (ex != null) {
                 System.err.println("TRACER TaskRunner caught ex: " + ex.getClass());

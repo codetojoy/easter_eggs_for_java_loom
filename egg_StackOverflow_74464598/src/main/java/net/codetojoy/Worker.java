@@ -2,13 +2,11 @@
 // note:  I no longer own this domain
 package net.codetojoy;
 
-import java.time.Duration;
-
 class Worker { 
     static final long THROW_EXCEPTION = -1L;
 
-    void doSleep(long delayInMillis) throws InterruptedException {
-        Thread.sleep(Duration.ofMillis(delayInMillis));
+    void doSleep(long delayInMillis) throws Exception {
+        Thread.sleep(java.time.Duration.ofMillis(delayInMillis));
     }
 
     void logInfo(int index, String name) {
