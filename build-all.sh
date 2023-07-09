@@ -28,6 +28,8 @@ cd $MY_HOME/egg_7_sc_deadline
 cd $MY_HOME/egg_8_sc_custom_invoke_some
 ./clean.sh && ./compile.sh 
 
+exit 0
+
 cd $MY_HOME/egg_9_sc_fan_in/client
 ./clean.sh && ./compile.sh 
 

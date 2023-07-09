@@ -5,13 +5,8 @@ package net.codetojoy;
 import java.util.*;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.*;
-import jdk.incubator.concurrent.*;
-
-// javadoc here: https://download.java.net/java/early_access/jdk19/docs/api/jdk.incubator.concurrent/jdk/incubator/concurrent/package-summary.html
 
 // NOTE: this is NOT production-ready, just an experiment
-// 
-// ref: https://github.com/openjdk/jdk19/blob/master/src/jdk.incubator.concurrent/share/classes/jdk/incubator/concurrent/StructuredTaskScope.java
 // 
 // this is similar in spirit to StructuredTaskScope.ShutdownOnSuccess<T>, but for N tasks
 // i.e. given M tasks, success is defined when N of them complete successfully
@@ -33,13 +28,13 @@ public class CustomStructuredTaskScope<T> extends StructuredTaskScope<T> {
     } 
 
     @Override
-    protected void handleComplete(Future<T> future) {
+    protected void handleComplete(StructuredTaskScope.Subtask<? extends T> subtask) {
         try { 
-            var state = future.state();
-            if (state == Future.State.SUCCESS) {
+            var state = subtask.state();
+            if (state == StructuredTaskScope.Subtask.State.SUCCESS) {
                 int numSuccess = successCounter.incrementAndGet();
                 if (numSuccess <= numTasksForSuccess) {
-                    results.add(future.resultNow());
+                    results.add(subtask.get());
                 } 
 
                 if (numSuccess == numTasksForSuccess) {
@@ -47,7 +42,7 @@ public class CustomStructuredTaskScope<T> extends StructuredTaskScope<T> {
                     System.out.println(LOG_PREFIX + " success threshold reached...");
                     shutdown();
                 }
-            } else if (state == Future.State.FAILED) {
+            } else if (state == StructuredTaskScope.Subtask.State.FAILED) {
                 failCounter.incrementAndGet();
             }
         } catch (Exception ex) {

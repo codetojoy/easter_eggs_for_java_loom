@@ -4,9 +4,6 @@ package net.codetojoy;
 
 import java.time.Duration;
 import java.util.concurrent.*;
-import jdk.incubator.concurrent.*;
-
-// javadoc here: https://download.java.net/java/early_access/jdk19/docs/api/jdk.incubator.concurrent/jdk/incubator/concurrent/package-summary.html
 
 public class Runner {
     long taskFooDelayInMillis = 1000L;
@@ -34,14 +31,14 @@ public class Runner {
 
     String run() throws Exception {
         try (var scope = new StructuredTaskScope.ShutdownOnFailure()) {
-            Future<String> foo = scope.fork(() -> taskFoo()); 
-            Future<String> bar = scope.fork(() -> taskBar());
+            var foo = scope.fork(() -> taskFoo()); 
+            var bar = scope.fork(() -> taskBar());
 
             scope.join();          // Join both forks
             scope.throwIfFailed(); // and propagate errors
 
             // Here, both forks have succeeded, so compose their results
-            return foo.resultNow() + " " + bar.resultNow();
+            return foo.get() + " " + bar.get();
         }
     }
 
