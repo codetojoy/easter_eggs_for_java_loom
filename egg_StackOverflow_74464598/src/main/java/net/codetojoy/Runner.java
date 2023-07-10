@@ -2,16 +2,14 @@
 // note: I no longer own this domain
 package net.codetojoy;
 
-import jdk.incubator.concurrent.*;
-
-// javadoc here: https://download.java.net/java/early_access/jdk19/docs/api/jdk.incubator.concurrent/jdk/incubator/concurrent/package-summary.html
+import java.util.concurrent.*;
 
 public class Runner {
     String runInThread(boolean doShutdown) throws Exception {
         try (var scope = new StructuredTaskScope<String>()) {
             var future = scope.fork(() -> new TaskRunner(doShutdown).run());   
             scope.join();
-            return future.resultNow();
+            return future.get();
         }
     }
 

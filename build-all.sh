@@ -40,8 +40,6 @@ cd $MY_HOME/egg__10_sc_nested_scopes_thread_dump
 cd $MY_HOME/egg__10b_sc_nested_experiment
 ./clean.sh && ./compile.sh 
 
-exit 0
-
 cd $MY_HOME/egg__11_sc_utility
 ./clean.sh && ./compile.sh 
 
