@@ -8,7 +8,7 @@ import java.util.Random;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.stream.IntStream;
 
-import jdk.incubator.concurrent.*;
+import java.util.concurrent.*;
 
 // see fan-in here: https://openjdk.java.net/jeps/428
 // javadoc here: https://download.java.net/java/early_access/jdk19/docs/api/jdk.incubator.concurrent/jdk/incubator/concurrent/package-summary.html
