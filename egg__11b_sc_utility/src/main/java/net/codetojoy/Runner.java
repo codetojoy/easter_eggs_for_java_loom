@@ -2,14 +2,12 @@
 // note: I no longer own this domain
 package net.codetojoy;
 
-import jdk.incubator.concurrent.StructuredTaskScope;
+import java.util.concurrent.StructuredTaskScope;
 
 import java.time.Instant;
 import java.io.*;
 import java.util.*;
 import java.util.stream.Stream;
-
-// javadoc here: https://download.java.net/java/early_access/jdk19/docs/api/jdk.incubator.concurrent/jdk/incubator/concurrent/package-summary.html
 
 public class Runner {
     private static final int TIMEOUT_IN_SECONDS = 10;
@@ -36,7 +34,7 @@ public class Runner {
             var deadline = Instant.now().plusSeconds(TIMEOUT_IN_SECONDS); 
             scope.joinUntil(deadline); 
 
-            var infos = foo.resultNow();
+            var infos = foo.get();
             infos.forEach((info) -> {
                 System.out.println("TRACER received: " + info.toString());
             });

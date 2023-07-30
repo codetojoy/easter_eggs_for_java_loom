@@ -1,5 +1,5 @@
 
-// This is a relatively quick/dirty program to parse the JSON output
+// A quick/dirty program to parse the JSON output
 // for jcmd with the command `Thread.dump_to_file`.
 //
 // Based on looking at the JSON output, it is hardcoded to find "thread flocks",

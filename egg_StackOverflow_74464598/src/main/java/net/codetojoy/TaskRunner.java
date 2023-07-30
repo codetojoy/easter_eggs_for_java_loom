@@ -3,9 +3,7 @@
 package net.codetojoy;
 
 import java.util.concurrent.Future;
-import jdk.incubator.concurrent.StructuredTaskScope;
-
-// javadoc here: https://download.java.net/java/early_access/jdk19/docs/api/jdk.incubator.concurrent/jdk/incubator/concurrent/package-summary.html
+import java.util.concurrent.StructuredTaskScope;
 
 public class TaskRunner {
     private long taskDelayInMillis = 20_000L;
@@ -56,7 +54,7 @@ public class TaskRunner {
             scope.join();          
             scope.throwIfFailed();
 
-            result = numOrders.resultNow() + " " + price.resultNow();
+            result = numOrders.get() + " " + price.get();
 
             System.out.println("TRACER TaskRunner post result");
         } catch (Exception ex) {

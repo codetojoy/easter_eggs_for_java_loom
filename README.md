@@ -1,7 +1,7 @@
 
 ### easter_eggs_for_java_loom
 
-- examples re: [Project Loom](https://openjdk.org/projects/loom/) in JDK 19
+- examples re: [Project Loom](https://openjdk.org/projects/loom/) in JDK 21 
 - usage of *egg* here is intended as an [SSCCE](http://sscce.org/); **not** a [hidden feature](https://en.wikipedia.org/wiki/Easter_egg_(media))
 
 ### Notes

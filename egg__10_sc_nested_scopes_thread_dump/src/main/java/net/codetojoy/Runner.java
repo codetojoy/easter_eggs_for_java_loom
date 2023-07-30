@@ -2,7 +2,7 @@
 // note: I no longer own this domain
 package net.codetojoy;
 
-import jdk.incubator.concurrent.StructuredTaskScope;
+import java.util.concurrent.StructuredTaskScope;
 
 import java.time.Instant;
 import java.io.*;

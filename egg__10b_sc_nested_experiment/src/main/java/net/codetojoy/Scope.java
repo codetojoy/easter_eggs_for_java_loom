@@ -5,7 +5,7 @@ package net.codetojoy;
 import java.util.List;
 import java.util.concurrent.Callable;
 
-import jdk.incubator.concurrent.StructuredTaskScope;
+import java.util.concurrent.StructuredTaskScope;
 
 class Scope { 
     void run(List<Callable<Void>> tasks, Runnable mainWorker) throws Exception {

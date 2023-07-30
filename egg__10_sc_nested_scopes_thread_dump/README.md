@@ -51,3 +51,4 @@ To Run:
     - this runs `Runner.java`
 * in terminal 2: `./list-thread-info.sh`
     - this calls `jcmd` and parses the output with `DumpParser.groovy`
+    - note: Groovy may not support Java 21 so use an older version 
