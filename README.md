@@ -6,11 +6,12 @@
 
 ### Notes
 
-* includes examples for [virtual threads](https://openjdk.java.net/jeps/425), a "preview" feature in JDK 19
-* includes examples for [structured concurrency](https://openjdk.java.net/jeps/428), which is "incubator" in JDK 19 
+* as of July 2023, these work using Bash but not Gradle or Maven
+* see branch `pre-jdk-21` for this repo using JDK 19/20
+* includes examples for virtual threads
+* includes examples for structured concurrency, which is "preview" in JDK 19 
     - we use `sc` for "structured concurrency" in the folder names
 * see README for each example
-* examples have Bash scripts and Maven scripts
 
 ### Resources
 
