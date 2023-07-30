@@ -14,7 +14,7 @@ def json = new groovy.json.JsonSlurper().parseText(text)
 def map = [:]
 def threadContainers = json['threadDump']['threadContainers']
 
-threadContainers.findAll { it['container'] =~ /.*ThreadFlock.*/ }.each { threadContainer ->
+threadContainers.findAll { it['container'] =~ /.*StructuredTaskScope.*/ }.each { threadContainer ->
     def owner = threadContainer['owner']
     def threads = threadContainer['threads']
     def threadCount = threadContainer['threadCount'] as int
