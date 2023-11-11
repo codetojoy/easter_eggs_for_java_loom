@@ -15,20 +15,16 @@ dependencies {
 
 
 compileJava {
-    options.compilerArgs.addAll(['--release', '19']) 
     options.compilerArgs.addAll(['--enable-preview'])
-    options.compilerArgs.addAll(['--add-modules', 'jdk.incubator.concurrent'])
 }
 
 compileTestJava {
-    options.compilerArgs.addAll(['--release', '19']) 
     options.compilerArgs.addAll(['--enable-preview'])
-    options.compilerArgs.addAll(['--add-modules', 'jdk.incubator.concurrent'])
 }
 
 test {
     useJUnitPlatform()
-    jvmArgs('--enable-preview','--add-modules', 'jdk.incubator.concurrent')
+    jvmArgs('--enable-preview')
 
     testLogging {
         events "passed", "skipped", "failed"
@@ -36,8 +32,7 @@ test {
 }
 
 application {
-    applicationDefaultJvmArgs = ['--enable-preview', 
-                                 '--add-modules', 'jdk.incubator.concurrent']
+    applicationDefaultJvmArgs = ['--enable-preview'] 
 }
 
 }
