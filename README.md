@@ -15,6 +15,12 @@
 * see README for each example
 * test message
 
+### Workflows
+
+* create token on GitHub for workflow scope
+* use `git remote set-url origin https://codetojoy:TOKEN_HERE@github.com/codetojoy/easter_eggs_for_java_loom.git`
+
+
 ### Resources
 
 * JEP 425 [Virtual Threads](https://openjdk.java.net/jeps/425)
