@@ -8,3 +8,5 @@
     - ok for bash, Maven 
 - egg6
     - ok for bash, Maven
+- egg7
+    - ok for bash, Maven
