@@ -10,7 +10,8 @@
     - ok for bash, Maven 
 - egg3
     - ok for bash, Maven 
-...
+- egg4
+    - ok for bash, Maven 
 - egg5
     - ok for bash, Maven 
 - egg6
