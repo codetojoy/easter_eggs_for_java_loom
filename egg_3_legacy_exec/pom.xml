@@ -13,8 +13,8 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.source>19</maven.compiler.source>
-    <maven.compiler.target>19</maven.compiler.target>
+    <maven.compiler.source>25</maven.compiler.source>
+    <maven.compiler.target>25</maven.compiler.target>
   </properties>
 
   <dependencies>
@@ -81,7 +81,6 @@
         <configuration>
           <executable>${java.home}/bin/java</executable>
           <arguments>
-            <argument>--add-modules=jdk.incubator.concurrent</argument>
             <argument>--enable-preview</argument>
             <argument>--class-path</argument>
             <classpath/>
