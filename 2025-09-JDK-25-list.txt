@@ -4,6 +4,9 @@
 
 - Gradle: not yet
 
+- egg1
+    - ok for bash, Maven 
+...
 - egg5
     - ok for bash, Maven 
 - egg6
