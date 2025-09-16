@@ -6,6 +6,8 @@
 
 - egg1
     - ok for bash, Maven 
+- egg2
+    - ok for bash, Maven 
 ...
 - egg5
     - ok for bash, Maven 
