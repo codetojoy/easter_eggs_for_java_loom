@@ -50,7 +50,7 @@ public class Runner {
     }
 
     void serve(ServerSocket serverSocket) throws IOException, InterruptedException {
-        try (var scope = new StructuredTaskScope<Void>()) {
+        try (var scope = StructuredTaskScope.open()) {
             try {
                 while (! shutdownReceived.get()) {
                     var socket = serverSocket.accept();
@@ -58,7 +58,6 @@ public class Runner {
                 }
             } finally {
                 System.out.println(LOG_PREFIX + " shutting down");
-                scope.shutdown();
                 scope.join();
             }
         }
