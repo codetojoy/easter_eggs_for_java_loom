@@ -2,9 +2,9 @@ include ([
 'egg_1_max_p_threads',
 'egg_2_max_v_threads',
 'egg_3_legacy_exec',
-/*
 'egg_4_virtual_exec',
 'egg_5_sc_invoke_all',
+/*
 'egg_6_sc_invoke_any',
 'egg_7_sc_deadline',
 'egg_8_sc_custom_invoke_some',
