@@ -34,23 +34,23 @@ cd $MY_HOME/egg_9_sc_fan_in/client
 cd $MY_HOME/egg_9_sc_fan_in/server
 ./mvn-build.sh
 
-cd $MY_HOME/egg__10_sc_nested_scopes_thread_dump
-./mvn-build.sh 
+# cd $MY_HOME/egg__10_sc_nested_scopes_thread_dump
+# ./mvn-build.sh 
 
-cd $MY_HOME/egg__10b_sc_nested_experiment
-./mvn-build.sh
+# cd $MY_HOME/egg__10b_sc_nested_experiment
+# ./mvn-build.sh
 
-cd $MY_HOME/egg__11_sc_utility
-./mvn-build.sh
+# cd $MY_HOME/egg__11_sc_utility
+# ./mvn-build.sh
 
-cd $MY_HOME/egg__11b_sc_utility
-./mvn-build.sh 
+# cd $MY_HOME/egg__11b_sc_utility
+# ./mvn-build.sh 
 
-cd $MY_HOME/egg__12_sc_junit
-./mvn-build.sh 
+# cd $MY_HOME/egg__12_sc_junit
+# ./mvn-build.sh 
 
-cd $MY_HOME/egg_StackOverflow_74464598
-./mvn-build.sh
+# cd $MY_HOME/egg_StackOverflow_74464598
+# ./mvn-build.sh
 
 cd $MY_HOME
 

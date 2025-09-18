@@ -30,15 +30,15 @@ clean_compile "egg_9_sc_fan_in/client"
 
 clean_compile "egg_9_sc_fan_in/server"
 
-clean_compile "egg__10_sc_nested_scopes_thread_dump"
+# clean_compile "egg__10_sc_nested_scopes_thread_dump"
 
-clean_compile "egg__10b_sc_nested_experiment"
+# clean_compile "egg__10b_sc_nested_experiment"
 
-clean_compile "egg__11_sc_utility"
+# clean_compile "egg__11_sc_utility"
 
-clean_compile "egg__11b_sc_utility"
+# clean_compile "egg__11b_sc_utility"
 
-clean_compile "egg_StackOverflow_74464598"
+# clean_compile "egg_StackOverflow_74464598"
 
 cd $MY_HOME
 

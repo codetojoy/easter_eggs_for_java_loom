@@ -4,6 +4,7 @@ package net.codetojoy;
 
 import java.time.Duration;
 import java.util.concurrent.*;
+import java.util.concurrent.StructuredTaskScope.Joiner;
 
 public class Runner {
     int taskFooDelayInMillis = 2000;
@@ -30,13 +31,11 @@ public class Runner {
     }
 
     String run() throws Exception {
-        try (var scope = new StructuredTaskScope.ShutdownOnSuccess<String>()) {
+        try (var scope = StructuredTaskScope.open(Joiner.<String>anySuccessfulResultOrThrow())) {
             var foo = scope.fork(() -> taskFoo()); 
             var bar = scope.fork(() -> taskBar());
 
-            scope.join(); 
-
-            return scope.result();
+            return scope.join();
         }
     }
 

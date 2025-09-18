@@ -4,8 +4,6 @@ Summary:
 
 * this egg illustrates virtual threads via ExecutorService
     - it acts like a thread-pool but it is just a facade for the familiar API
-* this egg uses:
-    - Java 19 (preview) virtual threads
 
 Build Notes:
 ------------

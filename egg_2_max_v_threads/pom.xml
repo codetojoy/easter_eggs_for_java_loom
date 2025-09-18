@@ -13,8 +13,8 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.source>19</maven.compiler.source>
-    <maven.compiler.target>19</maven.compiler.target>
+    <maven.compiler.source>25</maven.compiler.source>
+    <maven.compiler.target>25</maven.compiler.target>
   </properties>
 
   <dependencies>
@@ -42,11 +42,6 @@
         <plugin>
           <artifactId>maven-compiler-plugin</artifactId>
           <version>3.10.1</version>
-          <configuration>
-            <compilerArgs>
-              <arg>--enable-preview</arg>
-            </compilerArgs>
-          </configuration>
         </plugin>
         <plugin>
           <artifactId>maven-surefire-plugin</artifactId>
@@ -81,7 +76,6 @@
         <configuration>
           <executable>${java.home}/bin/java</executable>
           <arguments>
-            <argument>--add-modules=jdk.incubator.concurrent</argument>
             <argument>--enable-preview</argument>
             <argument>--class-path</argument>
             <classpath/>

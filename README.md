@@ -1,10 +1,50 @@
 
 ### easter_eggs_for_java_loom
 
-- examples re: [Project Loom](https://openjdk.org/projects/loom/) in JDK 21 
+- examples re: [Project Loom](https://openjdk.org/projects/loom/) 
 - usage of *egg* here is intended as an [SSCCE](http://sscce.org/); **not** a [hidden feature](https://en.wikipedia.org/wiki/Easter_egg_(media))
 
-### Notes
+### Notes, SEP 2025
+
+* SEP 2025: see `jdk-25` branch for Java 25 (work in progress)
+* eggs work with Bash, Gradle, or Maven
+
+### Index
+
+* egg_1_max_p_threads
+    * demo max # of platform threads
+* egg_2_max_v_threads
+    * demo max # of virtual threads
+* egg_3_legacy_exec
+    * illustrates legacy executor/thread pool 
+* egg_4_virtual_exec
+    * illustrates virtual threads via ExecutorService
+* egg_5_sc_invoke_all
+    * structured concurrency
+    * two tasks: `foo` and `bar`
+        - can be configured to succeed or fail
+        - when one task is configured to fail, the other is interrupted
+* egg_6_sc_invoke_any
+    * structured concurrency
+    * task `foo` and task `bar` are in a race: first one to complete is used; the other is interrupted
+* egg_7_sc_deadline
+    * illustrates structured concurrency
+    * task `foo` and task `bar` take too long and exceed a deadline
+        - both are interrupted
+* egg_8_sc_custom_invoke_some
+    * this egg illustrates structured concurrency
+    * create `T` tasks
+        - use a custom `StructuredTaskScope.Joiner` to define success when `n` tasks complete 
+        - if familiar with `invokeAny()` and `invokeAll()`, this could be considered `invokeSome(n)`
+    * NOTE: highly contrived and NOT production-ready
+* egg_9_sc_fan_in
+    * simple `client` to send messages over a socket to a `server`
+    * NOTE: highly contrived and NOT production-ready
+* others
+    * see `jdk-19` branch
+    * these may not have been moved to `jdk-21` and definitely not `jdk-25`
+
+### Notes, SEP 2023
 
 * as of September 2023, these work using Bash but not Gradle or Maven
 * GitHub actions are broken, pending availability of JDK 21 
@@ -15,34 +55,3 @@
 * see README for each example
 * test message
 
-### Workflows
-
-* create token on GitHub for workflow scope
-* use `git remote set-url origin https://codetojoy:TOKEN_HERE@github.com/codetojoy/easter_eggs_for_java_loom.git`
-
-
-### Resources
-
-* JEP 425 [Virtual Threads](https://openjdk.java.net/jeps/425)
-* JEP 428 [Structured Concurrency](https://openjdk.java.net/jeps/428)
-* Brian Goetz on [Virtual Threads](https://www.infoq.com/articles/java-virtual-threads/)
-* [Java 19 Virtual Threads - JEP Café](https://www.youtube.com/watch?v=lKSSBvRDmTg)
-* [Project Loom: Modern Scalable Concurrency for the Java Platform](https://www.youtube.com/watch?v=EO9oMiL1fFo) by Ron Pressler
-    - 12m00s : "codes like sync, scales like async"
-    - 12m34s : excellent discussion on Thread vs async/await in various languages
-    - 30m44s : great slides illustrating 1:1 versus M:N
-    - 37m34s : Little's Law
-* [Project Loom: Revolution in concurrency or obscure implementation detail?](https://www.youtube.com/watch?v=n_XRUljffu0) by Tomasz Nurkiewicz
-    - contrarian view
-* [Project Loom - A Friend or Foe of Reactive?](https://www.youtube.com/watch?v=YwG04UZP2a0) by Oleh Dokuka and Andrii Rodionov
-    - contrarian view
-    - esp. near 19m20s
-* [AMA About the Java Language](https://www.youtube.com/watch?v=9si7gK94gLo) by Brian Goetz and Nicolai Parlog
-    - near 19m10s, "Loom will kill Reactive programming"
-    - reddit thread [here](https://www.reddit.com/r/programming/comments/oxsnqg/brian_goetz_i_think_project_loom_is_going_to_kill/)
-* [Project Loom Q&A with Ron Pressler](https://www.youtube.com/watch?v=cAHW96omBAc)
-    - esp. near 55m25s
-* [Project Loom C5M](https://github.com/ebarlas/project-loom-c5m)
-    - 5 million concurrent connections
-* [Conway's Game of Life with virtual threads](https://github.com/ebarlas/game-of-life-csp)
-* blog post: [Notes on structured concurrency, or: Go statement considered harmful](https://vorpus.org/blog/notes-on-structured-concurrency-or-go-statement-considered-harmful) by Nathaniel J. Smith

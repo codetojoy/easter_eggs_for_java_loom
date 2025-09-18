@@ -12,7 +12,7 @@ public class Runner {
 
     public static void main(String... args) throws Exception {
         // set this to a large number, e.g. 500_000
-        int numThreads = 20_000;
+        int numThreads = 2_000;
 
         Thread thread = null;
 

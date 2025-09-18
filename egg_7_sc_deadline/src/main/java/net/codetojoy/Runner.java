@@ -3,7 +3,10 @@
 package net.codetojoy;
 
 import java.time.*;
+import java.util.List;
 import java.util.concurrent.StructuredTaskScope;
+import java.util.concurrent.StructuredTaskScope.Joiner;
+import java.util.concurrent.StructuredTaskScope.Subtask;
 
 public class Runner {
     long taskFooDelayInMillis = 20000L;
@@ -30,14 +33,14 @@ public class Runner {
     }
 
     String run() throws Exception {
-        try (var scope = new StructuredTaskScope.ShutdownOnSuccess<String>()) {
+        Duration timeout = Duration.ofSeconds(2);
+
+        try (var scope = StructuredTaskScope.open(Joiner.<String>anySuccessfulResultOrThrow(),
+                                                  cf -> cf.withTimeout(timeout))) {
             var foo = scope.fork(() -> taskFoo()); 
             var bar = scope.fork(() -> taskBar());
 
-            var deadline = Instant.now().plusSeconds(2); 
-            scope.joinUntil(deadline); 
-
-            return scope.result();
+            return scope.join();
         }
     }
 

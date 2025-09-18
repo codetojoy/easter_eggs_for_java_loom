@@ -25,7 +25,7 @@ public class Runner {
     } 
 
     void run(String ip, int port) throws Exception {
-        try (var scope = new StructuredTaskScope<Void>()) {
+        try (var scope = StructuredTaskScope.open()) {
             int numActors = 20;
             IntStream.range(0, numActors).forEach(i -> scope.fork(() -> runActor(i))); 
 
