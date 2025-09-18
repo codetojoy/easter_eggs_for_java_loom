@@ -1,5 +1,6 @@
 include ([
 'egg_1_max_p_threads',
+/*
 'egg_2_max_v_threads',
 'egg_3_legacy_exec',
 'egg_4_virtual_exec',
@@ -15,8 +16,10 @@ include ([
 'egg__11b_sc_utility',
 'egg__12_sc_junit',
 'egg_StackOverflow_74464598'
+*/
 ])
 
+/*
 for (project in rootProject.children) {
     if (project.name == 'egg_9_sc_fan_in_client') {
         project.projectDir = file("./egg_9_sc_fan_in/client")
@@ -24,3 +27,4 @@ for (project in rootProject.children) {
         project.projectDir = file("./egg_9_sc_fan_in/server")
     }
 }
+*/

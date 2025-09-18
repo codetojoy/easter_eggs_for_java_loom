@@ -1,11 +1,8 @@
 
 
-- key page: https://download.java.net/java/early_access/jdk25/docs/api/java.base/java/util/concurrent/StructuredTaskScope.Joiner.html
-
-- Gradle: not yet
 
 - egg1
-    - ok for bash, Maven 
+    - ok for bash, Gradle, Maven 
 - egg2
     - ok for bash, Maven 
 - egg3
