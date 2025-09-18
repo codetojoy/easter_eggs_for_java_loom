@@ -4,9 +4,9 @@
 - egg1
     - ok for bash, Gradle, Maven 
 - egg2
-    - ok for bash, Maven 
+    - ok for bash, Gradle, Maven 
 - egg3
-    - ok for bash, Maven 
+    - ok for bash, Gradle, Maven 
 - egg4
     - ok for bash, Maven 
 - egg5
