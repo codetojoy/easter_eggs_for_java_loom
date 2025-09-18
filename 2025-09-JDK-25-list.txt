@@ -12,9 +12,9 @@
 - egg5
     - ok for bash, Gradle, Maven 
 - egg6
-    - ok for bash, Maven
+    - ok for bash, Gradle, Maven
 - egg7
-    - ok for bash, Maven
+    - ok for bash, Gradle, Maven
 - egg8
     - ok for bash, Maven
 - egg9
