@@ -6,8 +6,9 @@
 
 ### Notes, SEP 2025
 
-* SEP 2025: see `jdk-25` branch for Java 25 (work in progress)
-* eggs work with Bash, Gradle, or Maven
+* SEP 2025: `main` branch uses Java 25
+* eggs 1-9 work with Bash, Gradle, or Maven
+* see also branch `jdk-21`, `jdk-19` (original)
 
 ### Index
 
