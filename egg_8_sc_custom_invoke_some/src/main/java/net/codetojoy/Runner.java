@@ -4,6 +4,7 @@ package net.codetojoy;
 
 import java.util.*;
 import java.util.stream.IntStream;
+import java.util.concurrent.*;
 
 // javadoc here: https://download.java.net/java/early_access/jdk19/docs/api/jdk.incubator.concurrent/jdk/incubator/concurrent/package-summary.html
 
@@ -23,13 +24,12 @@ public class Runner {
 
     List<String> run() throws Exception {
         int numTasksForSuccess = 5;
-        try (var scope = new CustomStructuredTaskScope<String>(numTasksForSuccess)) {
+        StructuredTaskScope.Joiner<String,List<String>> joiner = new CustomJoiner(numTasksForSuccess);
+        try (var scope = StructuredTaskScope.open(joiner)) {
             int numTasks = 50;
             IntStream.range(0, numTasks).forEach(i -> scope.fork(() -> taskFoo(i))); 
 
-            scope.join();
-
-            return scope.results();
+            return scope.join();
         }
     }
 
