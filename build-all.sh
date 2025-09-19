@@ -34,10 +34,6 @@ clean_compile "egg_9_sc_fan_in/server"
 
 # clean_compile "egg__10b_sc_nested_experiment"
 
-# clean_compile "egg__11_sc_utility"
-
-# clean_compile "egg__11b_sc_utility"
-
 # clean_compile "egg_StackOverflow_74464598"
 
 cd $MY_HOME

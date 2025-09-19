@@ -25,10 +25,6 @@ set -e
 
 # ./gradlew clean egg__10b_sc_nested_experiment:compileJava
 
-# ./gradlew clean egg__11_sc_utility:compileJava
-
-# ./gradlew clean egg__11b_sc_utility:compileJava
-
 # ./gradlew clean egg__12_sc_junit:compileJava
 
 # ./gradlew clean egg_StackOverflow_74464598:compileJava

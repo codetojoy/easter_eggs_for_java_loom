@@ -40,12 +40,6 @@ cd $MY_HOME/egg_9_sc_fan_in/server
 # cd $MY_HOME/egg__10b_sc_nested_experiment
 # ./mvn-build.sh
 
-# cd $MY_HOME/egg__11_sc_utility
-# ./mvn-build.sh
-
-# cd $MY_HOME/egg__11b_sc_utility
-# ./mvn-build.sh 
-
 # cd $MY_HOME/egg__12_sc_junit
 # ./mvn-build.sh 
 
