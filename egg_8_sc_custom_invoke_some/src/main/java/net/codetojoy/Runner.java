@@ -2,15 +2,14 @@
 // note: I no longer own this domain
 package net.codetojoy;
 
+import static net.codetojoy.Constants.*;
+
 import java.util.*;
 import java.util.stream.IntStream;
 import java.util.concurrent.*;
 
-// javadoc here: https://download.java.net/java/early_access/jdk19/docs/api/jdk.incubator.concurrent/jdk/incubator/concurrent/package-summary.html
-
 public class Runner {
     private final Random random = new Random(System.currentTimeMillis());
-    private static final int MAX_DELAY_IN_SECONDS = 6;
 
     String taskFoo(int i) {
         long delayInMillis = (random.nextInt(MAX_DELAY_IN_SECONDS) + 1) * 1000L;
@@ -23,11 +22,9 @@ public class Runner {
     }
 
     List<String> run() throws Exception {
-        int numTasksForSuccess = 5;
-        StructuredTaskScope.Joiner<String,List<String>> joiner = new CustomJoiner(numTasksForSuccess);
+        StructuredTaskScope.Joiner<String,List<String>> joiner = new CustomJoiner(NUM_TASKS_FOR_SUCCESS);
         try (var scope = StructuredTaskScope.open(joiner)) {
-            int numTasks = 50;
-            IntStream.range(0, numTasks).forEach(i -> scope.fork(() -> taskFoo(i))); 
+            IntStream.range(0, NUM_TASKS).forEach(i -> scope.fork(() -> taskFoo(i))); 
 
             return scope.join();
         }

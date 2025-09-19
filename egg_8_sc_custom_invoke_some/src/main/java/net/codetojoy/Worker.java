@@ -2,10 +2,11 @@
 // note:  I no longer own this domain
 package net.codetojoy;
 
+import static net.codetojoy.Constants.*;
+
 import java.time.Duration;
 
 class Worker { 
-    public static final int pathogenThreshold = 3;
     public static final long THROW_EXCEPTION = -1L;
     public static final String LOG_PREFIX = "TRACER Worker: ";
 
@@ -28,7 +29,7 @@ class Worker {
         int min = 1;
         int max = 10;
         int randomNum = min + (int)(Math.random() * ((max - min) + 1));
-        return randomNum < pathogenThreshold;
+        return randomNum < PATHOGEN_THRESHOLD;
     }
 
     // see https://stackoverflow.com/questions/15160782
