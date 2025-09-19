@@ -42,6 +42,7 @@
     * simple `client` to send messages over a socket to a `server`
     * NOTE: highly contrived and NOT production-ready
 * others
+    * egg__11*, egg__12
     * see `jdk-19` branch
     * these may not have been moved to `jdk-21` and definitely not `jdk-25`
 
