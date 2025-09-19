@@ -8,7 +8,8 @@
 
 * SEP 2025: `main` branch uses Java 25
 * eggs 1-9 work with Bash, Gradle, or Maven
-* see also branch `jdk-21`, `jdk-19` (original)
+* see also branches: `jdk-21`, `jdk-19` (original)
+    * branch [jdk-19](https://github.com/codetojoy/easter_eggs_for_java_loom/tree/jdk-19) has eggs 10, 11, 12 which are now obsolete
 
 ### Index
 
