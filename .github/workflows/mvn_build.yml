@@ -1,5 +1,5 @@
 
-name: Java build with Maven
+name: Java 25 build with Maven
 
 on:
   workflow_dispatch:

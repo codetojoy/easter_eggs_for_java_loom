@@ -1,5 +1,5 @@
 
-name: Java build with Gradle
+name: Java 25 build with Gradle
 
 on:
   workflow_dispatch:

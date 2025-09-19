@@ -1,5 +1,5 @@
 
-name: Java test with Maven
+name: Java 19 test with Maven
 
 on:
   workflow_dispatch:

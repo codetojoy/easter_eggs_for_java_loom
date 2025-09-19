@@ -1,5 +1,5 @@
 
-name: Java CI with Bash 
+name: Java 25 compile with Bash 
 
 on:
   workflow_dispatch:

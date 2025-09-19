@@ -1,5 +1,5 @@
 
-name: Java test with Gradle
+name: Java 19 test with Gradle
 
 on:
   workflow_dispatch:
