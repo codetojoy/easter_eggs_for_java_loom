@@ -5,6 +5,7 @@ package net.codetojoy;
 import java.time.Duration;
 
 class Worker { 
+    public static final int pathogenThreshold = 3;
     public static final long THROW_EXCEPTION = -1L;
     public static final String LOG_PREFIX = "TRACER Worker: ";
 
@@ -24,9 +25,10 @@ class Worker {
     }
 
     boolean isPathogenic() {
-        long now = System.currentTimeMillis();
-        long remainder = now % 10;
-        return remainder <= 3;
+        int min = 1;
+        int max = 10;
+        int randomNum = min + (int)(Math.random() * ((max - min) + 1));
+        return randomNum < pathogenThreshold;
     }
 
     // see https://stackoverflow.com/questions/15160782
