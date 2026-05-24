@@ -1,5 +1,5 @@
 
-name: Java 25 compile with Bash 
+name: Java 26 compile with Bash 
 
 on:
   workflow_dispatch:
@@ -20,11 +20,11 @@ jobs:
       - name: get code
         uses: actions/checkout@v5
 
-      - name: Set up JDK 25
+      - name: Set up JDK 26
         uses: actions/setup-java@v5
         with:
           distribution: 'zulu'
-          java-version: '25'
+          java-version: '26'
 
       - name: run build script
         run: ./build-all.sh
