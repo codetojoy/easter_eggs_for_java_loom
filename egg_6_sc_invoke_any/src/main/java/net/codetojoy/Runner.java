@@ -31,7 +31,7 @@ public class Runner {
     }
 
     String run() throws Exception {
-        try (var scope = StructuredTaskScope.open(Joiner.<String>anySuccessfulResultOrThrow())) {
+        try (var scope = StructuredTaskScope.open(Joiner.<String>anySuccessfulOrThrow())) {
             var foo = scope.fork(() -> taskFoo()); 
             var bar = scope.fork(() -> taskBar());
 

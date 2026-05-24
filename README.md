@@ -4,10 +4,12 @@
 - examples re: [Project Loom](https://openjdk.org/projects/loom/) 
 - usage of *egg* here is intended as an [SSCCE](http://sscce.org/); **not** a [hidden feature](https://en.wikipedia.org/wiki/Easter_egg_(media))
 
-### Notes, SEP 2025
+### Notes, MAY 2026
 
-* SEP 2025: `main` branch uses Java 25
+* MAY 2026: `main` branch uses Java 26
 * eggs 1-9 work with Bash, Gradle, or Maven
+    * Gradle 9.5.1
+    * Maven 3.9.11
 * see also branches: `jdk-21`, `jdk-19` (original)
     * branch [jdk-19](https://github.com/codetojoy/easter_eggs_for_java_loom/tree/jdk-19) has eggs 10, 11, 12 which are now obsolete
 
@@ -47,14 +49,4 @@
     * see `jdk-19` branch
     * these may not have been moved to `jdk-21` and definitely not `jdk-25`
 
-### Notes, SEP 2023
-
-* as of September 2023, these work using Bash but not Gradle or Maven
-* GitHub actions are broken, pending availability of JDK 21 
-* see branch `jdk-19` for this repo using JDK 19 (including Gradle and Maven)
-* includes examples for virtual threads
-* includes examples for structured concurrency, which is "preview" in JDK 21 
-    - we use `sc` for "structured concurrency" in the folder names
-* see README for each example
-* test message
 

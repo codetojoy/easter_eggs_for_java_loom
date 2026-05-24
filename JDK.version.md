@@ -1,1 +1,1 @@
-Java.net 25.ea.36-open via [SDKMan!](https://sdkman.io/) 
+26.0.1-amzn via [SDKMan!](https://sdkman.io/) 

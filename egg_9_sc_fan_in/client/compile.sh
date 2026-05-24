@@ -10,7 +10,7 @@ TARGET_DIR=$ROOT_DIR/my_build/main
 
 mkdir -p $TARGET_DIR
 
-javac --release 25 --enable-preview \
+javac --release 26 --enable-preview \
 -cp $CLASSPATH \
 -d $TARGET_DIR `find $SRC_DIR -name "*.java"`
 

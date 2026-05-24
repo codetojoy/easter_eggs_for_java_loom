@@ -35,7 +35,7 @@ public class Runner {
     String run() throws Exception {
         Duration timeout = Duration.ofSeconds(2);
 
-        try (var scope = StructuredTaskScope.open(Joiner.<String>anySuccessfulResultOrThrow(),
+        try (var scope = StructuredTaskScope.open(Joiner.<String>anySuccessfulOrThrow(),
                                                   cf -> cf.withTimeout(timeout))) {
             var foo = scope.fork(() -> taskFoo()); 
             var bar = scope.fork(() -> taskBar());

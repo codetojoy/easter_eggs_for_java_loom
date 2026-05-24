@@ -29,7 +29,7 @@ public class CustomJoiner<T> implements Joiner<T,List<T>> {
     } 
 
     @Override
-    public boolean onComplete(StructuredTaskScope.Subtask<? extends T> subtask) {
+    public boolean onComplete(StructuredTaskScope.Subtask<T> subtask) {
         boolean result = false;
 
         try { 
